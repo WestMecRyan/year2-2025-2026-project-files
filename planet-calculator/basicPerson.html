@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Person Object Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+      }
+
+      input:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+
+      button {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .btn-clear {
+        background-color: #6c757d;
+      }
+
+      .btn-clear:hover {
+        background-color: #545b62;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        color: #495057;
+      }
+
+      tr:hover {
+        background-color: #f8f9fa;
+      }
+
+      .person-info {
+        background-color: #e7f3ff;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 20px;
+        border-left: 4px solid #007bff;
+      }
+
+      .error {
+        color: #dc3545;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      .success {
+        color: #28a745;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>👤 Person Object Demo</h1>
+
+      <!-- Form Section -->
+      <form id="personForm">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" placeholder="Enter your name" required />
+          <div id="nameError" class="error"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input
+            type="number"
+            id="age"
+            placeholder="Enter your age"
+            min="1"
+            max="120"
+            required
+          />
+          <div id="ageError" class="error"></div>
+        </div>
+
+        <button type="submit">Add Person</button>
+        <button type="button" class="btn-clear" onclick="clearForm()">
+          Clear Form
+        </button>
+      </form>
+
+      <div id="message"></div>
+    </div>
+
+    <!-- Results Section -->
+    <div class="container">
+      <h2>📋 People List</h2>
+
+      <div id="personInfo" class="person-info" style="display: none">
+        <strong>Latest Person Added:</strong>
+        <div id="latestPerson"></div>
+      </div>
+
+      <table id="peopleTable" style="display: none">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Birth Year</th>
+            <th>Age Group</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="peopleTableBody"></tbody>
+      </table>
+
+      <div
+        id="emptyState"
+        style="text-align: center; color: #6c757d; padding: 40px"
+      >
+        No people added yet. Use the form above to add someone!
+      </div>
+
+      <button
+        id="clearAll"
+        onclick="clearAllPeople()"
+        style="display: none; margin-top: 20px"
+      >
+        Clear All People
+      </button>
+    </div>
+
+    <script>
+      // ========================================
+      // PERSON CLASS (The Object)
+      // ========================================
+
+      class Person {
+        #name;
+        #age;
+        #id;
+
+        constructor(name, age) {
+          this.#name = name.trim();
+          this.#age = parseInt(age);
+          this.#id = Date.now() + Math.random(); // Simple unique ID
+        }
+
+        // Getters
+        getName() {
+          return this.#name;
+        }
+
+        getAge() {
+          return this.#age;
+        }
+
+        getId() {
+          return this.#id;
+        }
+
+        // Setters
+        setName(newName) {
+          this.#name = newName.trim();
+        }
+
+        setAge(newAge) {
+          this.#age = parseInt(newAge);
+        }
+
+        // Calculated properties
+        getBirthYear() {
+          const currentYear = new Date().getFullYear();
+          return currentYear - this.#age;
+        }
+
+        getAgeGroup() {
+          if (this.#age < 13) return "Child";
+          if (this.#age < 20) return "Teenager";
+          if (this.#age < 65) return "Adult";
+          return "Senior";
+        }
+
+        // Method to describe the person
+        describe() {
+          return `${this.#name} is ${
+            this.#age
+          } years old, born in ${this.getBirthYear()}, and is classified as a ${this.getAgeGroup()}.`;
+        }
+
+        // Convert to plain object for easier handling
+        toObject() {
+          return {
+            id: this.#id,
+            name: this.#name,
+            age: this.#age,
+            birthYear: this.getBirthYear(),
+            ageGroup: this.getAgeGroup(),
+          };
+        }
+      }
+
+      // ========================================
+      // PEOPLE MANAGER (Collection of Person objects)
+      // ========================================
+
+      class PeopleManager {
+        #people;
+
+        constructor() {
+          this.#people = [];
+        }
+
+        addPerson(person) {
+          this.#people.push(person);
+        }
+
+        removePerson(id) {
+          this.#people = this.#people.filter((person) => person.getId() !== id);
+        }
+
+        getAllPeople() {
+          return [...this.#people]; // Return copy to prevent direct modification
+        }
+
+        getPersonById(id) {
+          return this.#people.find((person) => person.getId() === id);
+        }
+
+        clear() {
+          this.#people = [];
+        }
+
+        getCount() {
+          return this.#people.length;
+        }
+
+        getLastPerson() {
+          return this.#people[this.#people.length - 1];
+        }
+      }
+
+      // ========================================
+      // UI CONTROLLER (Connects Objects to DOM)
+      // ========================================
+
+      class UIController {
+        constructor() {
+          this.peopleManager = new PeopleManager();
+          this.setupEventListeners();
+        }
+
+        setupEventListeners() {
+          const form = document.getElementById("personForm");
+          form.addEventListener("submit", (e) => this.handleFormSubmit(e));
+
+          // Real-time validation
+          document
+            .getElementById("name")
+            .addEventListener("input", () => this.validateName());
+          document
+            .getElementById("age")
+            .addEventListener("input", () => this.validateAge());
+        }
+
+        handleFormSubmit(event) {
+          event.preventDefault(); // Prevent page reload
+
+          if (this.validateForm()) {
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+
+            try {
+              // Create new Person object
+              const person = new Person(name, age);
+
+              // Add to manager
+              this.peopleManager.addPerson(person);
+
+              // Update UI
+              this.updateDisplay();
+              this.clearForm();
+              this.showMessage("Person added successfully!", "success");
+            } catch (error) {
+              this.showMessage(
+                "Error creating person: " + error.message,
+                "error"
+              );
+            }
+          }
+        }
+
+        validateForm() {
+          const nameValid = this.validateName();
+          const ageValid = this.validateAge();
+          return nameValid && ageValid;
+        }
+
+        validateName() {
+          const name = document.getElementById("name").value.trim();
+          const errorDiv = document.getElementById("nameError");
+
+          if (name.length === 0) {
+            errorDiv.textContent = "Name is required";
+            return false;
+          } else if (name.length < 2) {
+            errorDiv.textContent = "Name must be at least 2 characters";
+            return false;
+          } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+            errorDiv.textContent = "Name can only contain letters and spaces";
+            return false;
+          } else {
+            errorDiv.textContent = "";
+            return true;
+          }
+        }
+
+        validateAge() {
+          const age = parseInt(document.getElementById("age").value);
+          const errorDiv = document.getElementById("ageError");
+
+          if (isNaN(age)) {
+            errorDiv.textContent = "Age must be a number";
+            return false;
+          } else if (age < 1 || age > 120) {
+            errorDiv.textContent = "Age must be between 1 and 120";
+            return false;
+          } else {
+            errorDiv.textContent = "";
+            return true;
+          }
+        }
+
+        updateDisplay() {
+          this.updateLatestPersonInfo();
+          this.updateTable();
+          this.updateVisibility();
+        }
+
+        updateLatestPersonInfo() {
+          const latestPerson = this.peopleManager.getLastPerson();
+          if (latestPerson) {
+            const infoDiv = document.getElementById("latestPerson");
+            infoDiv.textContent = latestPerson.describe();
+            document.getElementById("personInfo").style.display = "block";
+          }
+        }
+
+        updateTable() {
+          const tableBody = document.getElementById("peopleTableBody");
+          const people = this.peopleManager.getAllPeople();
+
+          // Clear existing rows
+          tableBody.innerHTML = "";
+
+          // Add rows for each person
+          people.forEach((person, index) => {
+            const row = this.createTableRow(person, index + 1);
+            tableBody.appendChild(row);
+          });
+        }
+
+        createTableRow(person, index) {
+          const row = document.createElement("tr");
+          const personData = person.toObject();
+
+          row.innerHTML = `
+                    <td>${index}</td>
+                    <td>${personData.name}</td>
+                    <td>${personData.age}</td>
+                    <td>${personData.birthYear}</td>
+                    <td>${personData.ageGroup}</td>
+                    <td>
+                        <button onclick="ui.removePerson('${personData.id}')"
+                                style="background-color: #dc3545; font-size: 12px; padding: 5px 10px;">
+                            Remove
+                        </button>
+                    </td>
+                `;
+
+          return row;
+        }
+
+        updateVisibility() {
+          const count = this.peopleManager.getCount();
+          const table = document.getElementById("peopleTable");
+          const emptyState = document.getElementById("emptyState");
+          const clearAllBtn = document.getElementById("clearAll");
+
+          if (count > 0) {
+            table.style.display = "table";
+            emptyState.style.display = "none";
+            clearAllBtn.style.display = "inline-block";
+          } else {
+            table.style.display = "none";
+            emptyState.style.display = "block";
+            clearAllBtn.style.display = "none";
+            document.getElementById("personInfo").style.display = "none";
+          }
+        }
+
+        removePerson(id) {
+          this.peopleManager.removePerson(id);
+          this.updateDisplay();
+          this.showMessage("Person removed", "success");
+        }
+
+        clearForm() {
+          document.getElementById("personForm").reset();
+          document.getElementById("nameError").textContent = "";
+          document.getElementById("ageError").textContent = "";
+        }
+
+        clearAll() {
+          this.peopleManager.clear();
+          this.updateDisplay();
+          this.showMessage("All people cleared", "success");
+        }
+
+        showMessage(text, type) {
+          const messageDiv = document.getElementById("message");
+          messageDiv.textContent = text;
+          messageDiv.className = type;
+          messageDiv.style.display = "block";
+
+          // Hide message after 3 seconds
+          setTimeout(() => {
+            messageDiv.style.display = "none";
+          }, 3000);
+        }
+      }
+
+      // ========================================
+      // GLOBAL FUNCTIONS (for onclick handlers)
+      // ========================================
+
+      function clearForm() {
+        ui.clearForm();
+      }
+
+      function clearAllPeople() {
+        if (confirm("Are you sure you want to remove all people?")) {
+          ui.clearAll();
+        }
+      }
+
+      // ========================================
+      // INITIALIZE APPLICATION
+      // ========================================
+
+      // Create global UI controller instance
+      const ui = new UIController();
+
+      // For testing in console
+      window.ui = ui;
+      window.Person = Person;
+      window.PeopleManager = PeopleManager;
+    </script>
+  </body>
+</html>
