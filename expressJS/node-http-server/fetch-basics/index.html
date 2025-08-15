@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <title>Form Test</title>
+  </head>
+  <body>
+    <form action="" id="myForm">
+      <section id="userdata">
+        <label for="username">Username:</label>
+        <input
+          id="user-name"
+          type="text"
+          name="username"
+          placeholder="enter username"
+        />
+      </section>
+
+      <button type="submit">send</button>
+    </form>
+    <section id="welcome-message"></section>
+    <button type="button" id="show-msg-btn">show message</button>
+    <script>
+      const showMsgBtn = document.getElementById("show-msg-btn");
+      const welcomeSection = document.getElementById("welcome-message");
+      showMsgBtn.addEventListener("click", () => {
+        fetch("/user-data", { method: "GET" })
+          .then((response) => {
+            return response.json();
+          })
+          .then((response) => {
+            console.log(response);
+            let user = response.username;
+            console.log(user);
+            welcomeSection.innerHTML = 'Welcome ' + user;
+          })
+          .catch(() => {
+            console.log("error");
+          });
+      });
+      const form = document.getElementById("myForm");
+      form.addEventListener("submit", function (event) {
+        // const form = event.target;
+        event.preventDefault();
+        console.log("this", this);
+        console.log("form", form);
+        console.log(form.username.value);
+        const data = {
+          username: form.username.value,
+        };
+        /* *** DEMONSTRATE LOGGING
+         // console.log(userData.entries);
+         for (let key of userData) {
+           console.log(key);
+         }
+         const formObject = Object.fromEntries(userData);
+         console.log("Form as object:", formObject);
+       */
+        fetch("/user-data", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          //   body: data, // before serialization
+          body: JSON.stringify(data),
+        })
+          .then((rawresponse) => {
+            console.log(rawresponse);
+            return rawresponse.text();
+          })
+          .then((response) => console.log(response))
+          .catch(() => {
+            console.log("there was an error!");
+          });
+        /* introduce promises with .then .catch
+         */
+      });
+    </script>
+  </body>
+</html>
