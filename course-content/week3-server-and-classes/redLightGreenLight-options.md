@@ -1,3 +1,4 @@
+## Red Light Green Light Other Solutions
 
 ```javascript
 function redLightGreenLight() {
@@ -36,4 +37,4 @@ function redLightGreenLight() {
 }
 ```
 
-The ternary operator (`condition ? valueIfTrue : valueIfFalse`) is perfect for this kind of toggle behavior!
+The ternary operator (`condition ? valueIfTrue : valueIfFalse`) is used for this kind of toggle behavior

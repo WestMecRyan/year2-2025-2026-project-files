@@ -1,0 +1,39 @@
+img#giraffe {
+  filter: blur(2px);
+}
+img#elephant {
+  filter: brightness(200%);
+  /* animation: brightenUp 3s infinite; */
+}
+img#turtle {
+  filter: contrast(5);
+}
+img#bird {
+  filter: grayscale(80%);
+}
+img#dragon {
+  filter: hue-rotate(180deg);
+}
+img#color-wheel {
+  filter: hue-rotate(180deg);
+}
+img#polar-bear {
+  filter: invert(1);
+}
+img#peacock {
+  filter: saturate(300%);
+}
+img#rooster {
+  filter: sepia(80%);
+}
+@keyframes brightenUp {
+  0% {
+    filter: brightness(50%);
+  }
+  50% {
+    filter: brightness(150%);
+  }
+  100% {
+    filter: brightness(50%);
+  }
+}
