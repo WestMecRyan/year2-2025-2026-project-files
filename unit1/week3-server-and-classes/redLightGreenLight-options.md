@@ -2,11 +2,11 @@
 
 ```javascript
 function redLightGreenLight() {
-  let currentLight = 'red'; // Start with red
+  let currentLight = "red"; // Start with red
 
   function alternatingLight() {
     // Use ternary to alternate between lights
-    currentLight = currentLight === 'red' ? 'green' : 'red';
+    currentLight = currentLight === "red" ? "green" : "red";
     console.log(`${currentLight} light!`);
 
     const nextDelay = Math.floor(Math.random() * 5000 + 1000);
@@ -21,7 +21,7 @@ function redLightGreenLight() {
 
 ```javascript
 function redLightGreenLight() {
-  const options = ['red light!', 'green light!'];
+  const options = ["red light!", "green light!"];
   let lastIndex = -1; // Track last choice
 
   function randomLight() {
@@ -38,3 +38,31 @@ function redLightGreenLight() {
 ```
 
 The ternary operator (`condition ? valueIfTrue : valueIfFalse`) is used for this kind of toggle behavior
+
+```javascript
+function manyLights() {
+  // ✅ Now works with any number of options
+  const options = ["red light!", "green light!", "yellow light!"];
+  let lastIndex = -1; // Track the last choice
+
+  function randomLight() {
+    let newIndex;
+
+    // Use a do...while loop to get a new random index that is
+    // different from the last one.
+    do {
+      newIndex = Math.floor(Math.random() * options.length);
+    } while (newIndex === lastIndex);
+
+    console.log(options[newIndex]);
+    lastIndex = newIndex; // Update the last index for the next run
+
+    // Set the timeout for the next call
+    setTimeout(randomLight, Math.floor(Math.random() * 5000 + 1000));
+  }
+
+  randomLight();
+}
+
+manyLights();
+```

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <title>Animal TV</title>
+  </head>
+  <body>
+    <div class="main-content">
+      <div id="tv-1">
+        <img
+          id="tv-1-screen"
+          class="animal-screen"
+          src=""
+          alt=""
+          height="100"
+          width="100"
+          data-power=""
+        />
+        <button type="button" class="tv-power" id="tv-1-power">
+          <i class="fa-solid fa-power-off"></i>
+        </button>
+        <select name="" id="tv-1-channels">
+          <option value="static" selected>static</option>
+          <option value="dog">DogTV</option>
+          <option value="cat">CatTV</option>
+        </select>
+      </div>
+    </div>
+    <script type="module">
+      import TV_Channels from "./channels.js";
+      // localStorage.setItem("tvChannels", JSON.stringify(TV_Channels));
+      let tv_static = TV_Channels["static"];
+      const screen1 = document.getElementById("tv-1-screen");
+      const channelSelect = document.getElementById("tv-1-channels");
+      if (screen1.hasAttribute("data-power")) {
+        screen1.src = TV_Channels[channelSelect.value];
+      }
+      channelSelect.addEventListener("change", () => {
+        let currentChannel = channelSelect.value;
+        screen1.src = TV_Channels[currentChannel];
+      });
+    </script>
+  </body>
+</html>
