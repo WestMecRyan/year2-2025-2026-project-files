@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+    <script src="/public/htmx.min.js"></script>
+  </head>
+  <body>
+    <h1>This is the homepage!</h1>
+    <form hx-post="/save-name" hx-target="#user-greeting" hx-swap="innerHTML">
+      <input name="username" type="text" placeholder="what's your name?" />
+      <button type="submit">submit</button>
+    </form>
+    <h2 id="user-greeting"></h2>
+  </body>
+</html>
