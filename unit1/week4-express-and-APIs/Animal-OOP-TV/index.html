@@ -46,22 +46,24 @@
       const channelSelect = document.getElementById("tv-1-channels");
       const tv1Power = document.getElementById("tv-1-power");
       let powerButtons = document.getElementsByClassName("tv-power");
-      powerButtons.foEach(btn=>btn.addEventListener("click", (event) => {
-        if (event.hasAttribute("data-power")) {
-          screen1.removeAttribute("data-power");
-          channelSelect.value =
-            channelSelect.querySelector("option[selected]").value;
-          channelSelect.style.visibility = "hidden";
-        } else {
-          screen1.setAttribute("data-power", "");
-          channelSelect.style.visibility = "visible";
-        }
-        if (screen1.hasAttribute("data-power")) {
-          screen1.src = TV_Channels[channelSelect.value];
-        } else {
-          screen1.src = "";
-        }
-      });
+      powerButtons.foEach((btn) =>
+        btn.addEventListener("click", (event) => {
+          if (event.hasAttribute("data-power")) {
+            screen1.removeAttribute("data-power");
+            channelSelect.value =
+              channelSelect.querySelector("option[selected]").value;
+            channelSelect.style.visibility = "hidden";
+          } else {
+            screen1.setAttribute("data-power", "");
+            channelSelect.style.visibility = "visible";
+          }
+          if (screen1.hasAttribute("data-power")) {
+            screen1.src = TV_Channels[channelSelect.value];
+          } else {
+            screen1.src = "";
+          }
+        })
+      );
       if (screen1.hasAttribute("data-power")) {
         screen1.src = TV_Channels[channelSelect.value];
       }
