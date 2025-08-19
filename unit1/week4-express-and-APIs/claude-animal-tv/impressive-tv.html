@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Remote Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .tv-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .tv-screen {
+            width: 100%;
+            height: 200px;
+            background: #000;
+            border: 10px solid #333;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tv-off {
+            background: #222 !important;
+            color: #666 !important;
+            text-shadow: none !important;
+        }
+
+        .static-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 2px,
+                rgba(255,255,255,0.03) 2px,
+                rgba(255,255,255,0.03) 4px
+            );
+            animation: static 0.1s infinite;
+        }
+
+        @keyframes static {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(4px); }
+        }
+
+        .remote-control {
+            background: #2c3e50;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(145deg, #3498db, #2980b9);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            min-width: 80px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(145deg, #3cb4f0, #2e90d1);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .power-btn {
+            background: linear-gradient(145deg, #e74c3c, #c0392b) !important;
+            font-size: 18px;
+        }
+
+        .power-btn:hover {
+            background: linear-gradient(145deg, #f56c5c, #d63447) !important;
+        }
+
+        .channel-input {
+            padding: 10px;
+            border: 2px solid #34495e;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100px;
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        .status {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .channel-btn {
+            background: linear-gradient(145deg, #9b59b6, #8e44ad);
+            min-width: auto;
+        }
+
+        .channel-btn:hover {
+            background: linear-gradient(145deg, #b370cf, #a569bd) !important;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .volume-slider {
+            width: 200px;
+            height: 6px;
+            border-radius: 3px;
+            background: #34495e;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="tv-container">
+        <h1 style="text-align: center; margin-bottom: 30px;">🔴 TV Remote Control</h1>
+
+        <!-- TV Screen -->
+        <div class="tv-screen" id="tvScreen">
+            <div id="screenContent">TV is OFF</div>
+            <div class="static-effect" id="staticEffect" style="display: none;"></div>
+        </div>
+
+        <!-- Status Display -->
+        <div class="status" id="statusDisplay">
+            Status: OFF | Channel: None | Volume: 50
+        </div>
+
+        <!-- Remote Control -->
+        <div class="remote-control">
+            <!-- Power Button -->
+            <div class="button-row">
+                <button class="btn power-btn" id="powerBtn">⚡ POWER</button>
+            </div>
+
+            <!-- Channel Controls -->
+            <div class="button-row">
+                <button class="btn" id="channelUpBtn">CH ▲</button>
+                <input type="number" class="channel-input" id="channelInput"
+                       placeholder="CH" min="1" max="999">
+                <button class="btn" id="channelDownBtn">CH ▼</button>
+                <button class="btn" id="setChannelBtn">SET</button>
+            </div>
+
+            <!-- Volume Controls -->
+            <div class="volume-control">
+                <button class="btn" id="volumeDownBtn">🔉</button>
+                <input type="range" class="volume-slider" id="volumeSlider"
+                       min="0" max="100" value="50">
+                <button class="btn" id="volumeUpBtn">🔊</button>
+            </div>
+
+            <!-- Quick Channel Buttons -->
+            <div class="channel-grid">
+                <button class="btn channel-btn" data-channel="1">1</button>
+                <button class="btn channel-btn" data-channel="2">2</button>
+                <button class="btn channel-btn" data-channel="3">3</button>
+                <button class="btn channel-btn" data-channel="4">4</button>
+                <button class="btn channel-btn" data-channel="5">5</button>
+                <button class="btn channel-btn" data-channel="6">6</button>
+                <button class="btn channel-btn" data-channel="7">7</button>
+                <button class="btn channel-btn" data-channel="8">8</button>
+                <button class="btn channel-btn" data-channel="9">9</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // TV Class (inline for this example - normally would be in TV.js)
+        class TV {
+            constructor() {
+                this.isOn = false;
+                this.currentChannel = null;
+                this.volume = 50;
+                this.maxChannel = 999;
+                this.minChannel = 1;
+            }
+
+            togglePower() {
+                this.isOn = !this.isOn;
+                if (!this.isOn) {
+                    this.currentChannel = null; // Reset channel when turning off
+                }
+            }
+
+            setChannel(channel) {
+                if (!this.isOn) return false;
+
+                const channelNum = parseInt(channel);
+                if (channelNum >= this.minChannel && channelNum <= this.maxChannel) {
+                    this.currentChannel = channelNum;
+                    return true;
+                }
+                return false;
+            }
+
+            channelUp() {
+                if (!this.isOn) return;
+
+                if (this.currentChannel === null) {
+                    this.currentChannel = this.minChannel;
+                } else if (this.currentChannel < this.maxChannel) {
+                    this.currentChannel++;
+                } else {
+                    this.currentChannel = this.minChannel; // Wrap around
+                }
+            }
+
+            channelDown() {
+                if (!this.isOn) return;
+
+                if (this.currentChannel === null) {
+                    this.currentChannel = this.maxChannel;
+                } else if (this.currentChannel > this.minChannel) {
+                    this.currentChannel--;
+                } else {
+                    this.currentChannel = this.maxChannel; // Wrap around
+                }
+            }
+
+            setVolume(volume) {
+                this.volume = Math.max(0, Math.min(100, parseInt(volume)));
+            }
+
+            volumeUp() {
+                this.setVolume(this.volume + 5);
+            }
+
+            volumeDown() {
+                this.setVolume(this.volume - 5);
+            }
+
+            getStatus() {
+                return {
+                    isOn: this.isOn,
+                    channel: this.currentChannel,
+                    volume: this.volume
+                };
+            }
+        }
+
+        // Create TV instance
+        const tv = new TV();
+
+        // Get UI elements
+        const tvScreen = document.getElementById('tvScreen');
+        const screenContent = document.getElementById('screenContent');
+        const staticEffect = document.getElementById('staticEffect');
+        const statusDisplay = document.getElementById('statusDisplay');
+        const powerBtn = document.getElementById('powerBtn');
+        const channelUpBtn = document.getElementById('channelUpBtn');
+        const channelDownBtn = document.getElementById('channelDownBtn');
+        const channelInput = document.getElementById('channelInput');
+        const setChannelBtn = document.getElementById('setChannelBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeUpBtn = document.getElementById('volumeUpBtn');
+        const volumeDownBtn = document.getElementById('volumeDownBtn');
+        const channelBtns = document.querySelectorAll('.channel-btn');
+
+        // Channel content for demonstration
+        const channelContent = {
+            1: "📺 Channel 1 - News Network",
+            2: "🎬 Channel 2 - Movie Channel",
+            3: "🏈 Channel 3 - Sports Center",
+            4: "🌍 Channel 4 - Discovery",
+            5: "🎵 Channel 5 - Music TV",
+            6: "👶 Channel 6 - Kids Channel",
+            7: "🍳 Channel 7 - Cooking Show",
+            8: "📰 Channel 8 - Local News",
+            9: "🎭 Channel 9 - Drama Network"
+        };
+
+        // Update UI based on TV state
+        function updateUI() {
+            const status = tv.getStatus();
+
+            // Update screen
+            if (status.isOn) {
+                tvScreen.classList.remove('tv-off');
+                staticEffect.style.display = 'block';
+
+                if (status.channel) {
+                    screenContent.textContent = channelContent[status.channel] || `📺 Channel ${status.channel}`;
+                } else {
+                    screenContent.textContent = "📺 No Signal - Select Channel";
+                }
+            } else {
+                tvScreen.classList.add('tv-off');
+                staticEffect.style.display = 'none';
+                screenContent.textContent = "TV is OFF";
+            }
+
+            // Update status display
+            statusDisplay.textContent = `Status: ${status.isOn ? 'ON' : 'OFF'} | ` +
+                                      `Channel: ${status.channel || 'None'} | ` +
+                                      `Volume: ${status.volume}`;
+
+            // Update volume slider
+            volumeSlider.value = status.volume;
+
+            // Update channel input
+            channelInput.value = status.channel || '';
+
+            // Enable/disable controls based on power state
+            const controls = [channelUpBtn, channelDownBtn, setChannelBtn,
+                            volumeUpBtn, volumeDownBtn, volumeSlider, channelInput];
+            controls.forEach(control => {
+                control.disabled = !status.isOn;
+            });
+
+            channelBtns.forEach(btn => {
+                btn.disabled = !status.isOn;
+            });
+        }
+
+        // Event Listeners
+        powerBtn.addEventListener('click', () => {
+            tv.togglePower();
+            updateUI();
+        });
+
+        channelUpBtn.addEventListener('click', () => {
+            tv.channelUp();
+            updateUI();
+        });
+
+        channelDownBtn.addEventListener('click', () => {
+            tv.channelDown();
+            updateUI();
+        });
+
+        setChannelBtn.addEventListener('click', () => {
+            const channel = channelInput.value;
+            if (channel) {
+                const success = tv.setChannel(channel);
+                if (!success) {
+                    alert('Invalid channel number! Please enter 1-999.');
+                }
+                updateUI();
+            }
+        });
+
+        // Allow setting channel by pressing Enter
+        channelInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                setChannelBtn.click();
+            }
+        });
+
+        volumeSlider.addEventListener('input', () => {
+            tv.setVolume(volumeSlider.value);
+            updateUI();
+        });
+
+        volumeUpBtn.addEventListener('click', () => {
+            tv.volumeUp();
+            updateUI();
+        });
+
+        volumeDownBtn.addEventListener('click', () => {
+            tv.volumeDown();
+            updateUI();
+        });
+
+        // Quick channel buttons
+        channelBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const channel = btn.dataset.channel;
+                tv.setChannel(channel);
+                updateUI();
+            });
+        });
+
+        // Initialize UI
+        updateUI();
+
+        // Expose tv to window for debugging (optional)
+        window.tv = tv;
+        console.log('TV instance available as window.tv for debugging');
+    </script>
+</body>
+</html>

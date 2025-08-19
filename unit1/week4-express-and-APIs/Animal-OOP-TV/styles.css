@@ -2,4 +2,6 @@ img.animal-screen {
   background: #000;
   object-fit: fill;
   display: block;
+  height: 100px;
+  width: 100px;
 }

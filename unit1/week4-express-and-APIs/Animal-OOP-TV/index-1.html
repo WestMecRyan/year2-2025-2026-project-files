@@ -35,19 +35,13 @@
     </div>
     <script type="module">
       import TV_Channels from "./channels.js";
-      import createTVui from "./tv-layout.js";
-      import TV from "./TV.js";
       // localStorage.setItem("tvChannels", JSON.stringify(TV_Channels));
-      const mainDiv = document.querySelector(".main-content");
-      let staticTV = TV_Channels["static"];
-      let dogTV = TV_Channels["dog"];
-      // adding default screen properties
+      let tv_static = TV_Channels["static"];
       const screen1 = document.getElementById("tv-1-screen");
       const channelSelect = document.getElementById("tv-1-channels");
       const tv1Power = document.getElementById("tv-1-power");
-      let powerButtons = document.getElementsByClassName("tv-power");
-      powerButtons.foEach(btn=>btn.addEventListener("click", (event) => {
-        if (event.hasAttribute("data-power")) {
+      tv1Power.addEventListener("click", () => {
+        if (screen1.hasAttribute("data-power")) {
           screen1.removeAttribute("data-power");
           channelSelect.value =
             channelSelect.querySelector("option[selected]").value;
@@ -71,11 +65,6 @@
           screen1.src = TV_Channels[currentChannel];
         }
       });
-      // end default screen properties
-
-      // start building custom screens
-      let tv2 = new TV(dogTV);
-      createTVui(mainDiv, tv2);
     </script>
   </body>
 </html>
