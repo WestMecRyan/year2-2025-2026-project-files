@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Animal TV</title>
+  </head>
+  <body>
+    <div class="main-content">
+      <div id="tv-1">
+        <img
+          height="100"
+          width="100"
+          src=""
+          alt="animal televison"
+          id="tv-1-screen"
+          class="animal-screen"
+        />
+        <button id="tv-1-power" type="button">power</button>
+      </div>
+    </div>
+    <script type="module">
+      import TV_Channels from "./channels.js";
+      console.log(TV_Channels);
+      let staticTV = TV_Channels["static"];
+      let dragonTV = TV_Channels["dragon"];
+      let currentChannel = dragonTV;
+      const screen1 = document.getElementById("tv-1-screen");
+      const power1 = document.getElementById("tv-1-power");
+      // set up a structure where you console log on or off when you click the power button
+      let isOn = false;
+      power1.addEventListener("click", () => {
+        if (isOn) {
+          console.log("tv off");
+          isOn = false;
+        } else {
+          console.log("tv on");
+          isOn = true;
+        }
+      });
+      if (screen1.hasAttribute("data-power")) {
+        screen1.src = currentChannel;
+      } else {
+        screen1.src = "";
+      }
+      //   screen1.src = dragonTV;
+    </script>
+  </body>
+</html>
