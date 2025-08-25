@@ -1,0 +1,93 @@
+# ExpressJS and API Learning Project Setup
+
+## Project Overview
+Create a comprehensive learning project for beginner JavaScript students focusing on ExpressJS, APIs, data persistence, and advanced JavaScript concepts.
+
+## Task: Build Project Structure and Educational Content
+
+Please create the following folder structure and files in my project:
+
+```
+unit-1/
+└── week5-expressJS-and-API-keys/
+    └── js-topics/
+        ├── expressjs-and-apis/
+        │   ├── README.md
+        │   ├── basic-express-server.js
+        │   ├── weather-api-example.js
+        │   └── api-key-security.md
+        ├── promises-try-catch/
+        │   ├── README.md
+        │   ├── promise-basics.js
+        │   ├── async-await-examples.js
+        │   └── error-handling-patterns.js
+        ├── regex-and-sanitization/
+        │   ├── README.md
+        │   ├── input-validation.js
+        │   ├── sanitization-examples.js
+        │   └── security-patterns.md
+        └── closures-and-encapsulation/
+            ├── README.md
+            ├── closure-examples.js
+            ├── private-variables.js
+            └── encapsulation-patterns.js
+```
+
+## Content Requirements for Each Topic
+
+### 1. ExpressJS and APIs
+- **README.md**: Explain ExpressJS basics, routing, middleware, and API integration
+- **basic-express-server.js**: Convert the provided vanilla Node.js server to Express
+- **weather-api-example.js**: Demonstrate fetching weather data with API keys
+- **api-key-security.md**: Best practices for securing API keys
+
+### 2. Promises and Try/Catch
+- **README.md**: Explain promises, async/await, and error handling for beginners
+- **promise-basics.js**: Basic promise creation and consumption
+- **async-await-examples.js**: Modern async/await patterns
+- **error-handling-patterns.js**: Proper error handling with try/catch
+
+### 3. Regex and Sanitization
+- **README.md**: Explain input validation and sanitization importance
+- **input-validation.js**: Common regex patterns for validation
+- **sanitization-examples.js**: Using sanitize-html and other sanitization methods
+- **security-patterns.md**: XSS prevention and security best practices
+
+### 4. Closures and Encapsulation
+- **README.md**: Explain closures, scope, and encapsulation for beginners
+- **closure-examples.js**: Practical closure examples
+- **private-variables.js**: Creating private variables and methods
+- **encapsulation-patterns.js**: Module patterns and data hiding
+
+## Additional Requirements
+
+### Data Persistence Topics to Include:
+1. **Browser localStorage** - Saving data client-side
+2. **JSON file storage** - Server-side data persistence
+3. **Single source of truth** - Synchronizing client and server data
+4. **API key management** - Environment variables and security
+
+### Learning Objectives:
+- Transform vanilla Node.js server to Express.js
+- Implement proper error handling with promises and try/catch
+- Validate and sanitize user input to prevent XSS attacks
+- Use closures to create private variables and encapsulated modules
+- Integrate external APIs securely with proper key management
+- Implement data persistence patterns
+
+## Current Server Code Reference:
+The existing vanilla Node.js server includes:
+- Basic HTTP server setup
+- Route handling with if/else statements
+- HTML sanitization using sanitize-html
+- File system operations for serving static content
+- XSS attack demonstration and prevention
+
+## Teaching Approach:
+- Start with concepts beginners can understand
+- Provide practical, runnable examples
+- Include common pitfalls and how to avoid them
+- Progressive complexity from basic to advanced concepts
+- Real-world applications and use cases
+
+Please create all files with appropriate beginner-friendly explanations, code examples, and practical exercises that build upon the existing server code.

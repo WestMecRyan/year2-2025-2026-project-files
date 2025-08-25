@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regex Form Validation Tutorial</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-size: cover;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: #fff;
+        min-height: 100vh;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      img#banner-logo {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      #nav-list {
+        background: linear-gradient(
+          to bottom,
+          black 1%,
+          maroon,
+          rgb(179, 20, 25)
+        );
+        height: 45px;
+        overflow: hidden;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+      }
+
+      li a {
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 18px;
+        display: block;
+        transition: background-color 0.3s;
+      }
+
+      li a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      h1 {
+        color: maroon;
+        font-size: 2.5rem;
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .form-container {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        flex-wrap: wrap;
+      }
+
+      .form-section {
+        flex: 1;
+        min-width: 300px;
+        background-color: beige;
+        border-radius: 15px;
+        border: 2px solid maroon;
+        padding: 20px;
+      }
+
+      .section-header {
+        background-color: maroon;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin: -20px -20px 20px -20px;
+        border-radius: 13px 13px 0 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+        position: relative;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: maroon;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      textarea {
+        width: 100%;
+        padding: 8px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+        transition: border-color 0.3s;
+      }
+
+      input.valid {
+        border-color: green;
+        background-color: #f0fff0;
+      }
+
+      input.invalid {
+        border-color: red;
+        background-color: #fff0f0;
+      }
+
+      .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+        display: none;
+      }
+
+      .success-message {
+        color: green;
+        font-size: 14px;
+        margin-top: 5px;
+        display: none;
+      }
+
+      .regex-info {
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 10px;
+        font-family: monospace;
+        font-size: 12px;
+      }
+
+      .buttons-container {
+        text-align: center;
+        padding: 20px;
+        gap: 15px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .submit-button {
+        background-color: maroon;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .submit-button:hover {
+        background-color: #800000;
+      }
+
+      .clear-button {
+        background-color: #666;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .clear-button:hover {
+        background-color: #555;
+      }
+
+      .tutorial-info {
+        background-color: #e8f4ff;
+        border: 2px solid #0066cc;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 20px;
+      }
+
+      .stored-data {
+        background-color: #fff;
+        border: 2px solid maroon;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 20px;
+      }
+
+      pre {
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+      }
+
+      @media (max-width: 768px) {
+        .form-container {
+          flex-direction: column;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="nav-list">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Directions</a></li>
+          <li><a href="#">Coupons</a></li>
+          <li><a href="#">Orders</a></li>
+          <li><a href="#">Catering</a></li>
+          <li><a href="#">Reviews</a></li>
+        </ul>
+      </div>
+
+      <h1>Regex Form Validation Tutorial</h1>
+
+      <form id="validationForm">
+        <div class="form-container">
+          <div class="form-section">
+            <div class="section-header">Personal Information</div>
+
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" required />
+              <div class="error-message" id="firstNameError"></div>
+              <div class="success-message" id="firstNameSuccess"></div>
+              <div class="regex-info">
+                <strong>Requirement:</strong>letters only, 2-30 characters
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="section-header">Address Information</div>
+          </div>
+        </div>
+
+        <div class="buttons-container">
+          <button type="button" class="clear-button" onclick="clearForm()">
+            Clear Form
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      /// Regex pattern
+      const patterns = {
+        firstName: /^[A-Za-z]{2,30}$/,
+      };
+      const errorMessages = {
+        firstName: "First name must contain only letters (2-30 characters)",
+        lastName:
+          "Last name must contain only letters, spaces, apostrophes, or hyphens (2-50 characters)",
+        email: "Please enter a valid email address (user@domain.com)",
+        phone: "Phone must be in format: (555) 123-4567",
+        streetAddress:
+          "Address must start with a number followed by street name",
+        city: "City must contain only letters, spaces, periods, or hyphens (2-50 characters)",
+        state: "State must be exactly 2 uppercase letters (e.g., AZ, CA)",
+        zipCode:
+          "ZIP code must be 5 digits or 5+4 format (12345 or 12345-6789)",
+      };
+
+      document
+        .getElementById("validationForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
+
+          let formData = {};
+          let allValid = true;
+
+          // Validate all fields
+          formFields.forEach((fieldName) => {
+            const field = document.getElementById(fieldName);
+            const result = validateField(fieldName, field.value);
+
+            showValidationFeedback(fieldName, result);
+
+            if (result.isValid) {
+              // Store trimmed value in form data
+              formData[fieldName] = field.value.trim();
+            } else {
+              allValid = false;
+            }
+          });
+
+          if (allValid) {
+            try {
+              // Add timestamp to the data
+              formData.timestamp = new Date().toISOString();
+              formData.submissionId = Date.now(); // Unique ID for this submission
+
+              // Store in localStorage - demonstrate local storage usage
+              const existingData = JSON.parse(
+                localStorage.getItem("formSubmissions") || "[]"
+              );
+              existingData.push(formData);
+              localStorage.setItem(
+                "formSubmissions",
+                JSON.stringify(existingData)
+              );
+
+              // Also store the latest submission separately
+              localStorage.setItem(
+                "latestSubmission",
+                JSON.stringify(formData)
+              );
+
+              alert(
+                '✅ Form validated successfully and saved to local storage!\n\nClick "Show Stored Data" to view saved data.'
+              );
+
+              // Optionally clear the form after successful submission
+              // clearForm();
+            } catch (error) {
+              console.error("Error saving to localStorage:", error);
+              alert(
+                "❌ Form is valid but there was an error saving to storage: " +
+                  error.message
+              );
+            }
+          } else {
+            alert("❌ Please fix all validation errors before submitting.");
+          }
+        });
+
+      // Function to validate individual field with try-catch error handling
+      function validateField(fieldName, value) {
+        try {
+          const trimmedValue = value.trim();
+          if (!trimmedValue) {
+            throw new Error(`${fieldName} is required`);
+          }
+
+          const pattern = patterns[fieldName];
+
+          // Reset the global flag if it exists (important for /g flag usage)
+          if (pattern.global) {
+            pattern.lastIndex = 0;
+          }
+
+          // Test the pattern against the trimmed value
+          const isValid = pattern.test(trimmedValue);
+
+          if (!isValid) {
+            throw new Error(errorMessages[fieldName]);
+          }
+
+          return { isValid: true, message: "✓ Valid format" };
+        } catch (error) {
+          return { isValid: false, message: error.message };
+        }
+      }
+
+      // Function to show validation feedback
+      function showValidationFeedback(fieldName, result) {
+        const errorDiv = document.getElementById(`${fieldName}Error`);
+        const successDiv = document.getElementById(`${fieldName}Success`);
+        const inputField = document.getElementById(fieldName);
+
+        if (result.isValid) {
+          errorDiv.style.display = "none";
+          successDiv.textContent = result.message;
+          successDiv.style.display = "block";
+          inputField.classList.remove("invalid");
+          inputField.classList.add("valid");
+        } else {
+          successDiv.style.display = "none";
+          errorDiv.textContent = result.message;
+          errorDiv.style.display = "block";
+          inputField.classList.remove("valid");
+          inputField.classList.add("invalid");
+        }
+      }
+
+      // Add real-time validation to all form fields
+      const formFields = [
+        "firstName",
+        "lastName",
+        "email",
+        "phone",
+        "streetAddress",
+        "city",
+        "state",
+        "zipCode",
+      ];
+
+      // Utility functions for demonstration
+      function clearForm() {
+        document.getElementById("validationForm").reset();
+
+        formFields.forEach((fieldName) => {
+          const errorDiv = document.getElementById(`${fieldName}Error`);
+          const successDiv = document.getElementById(`${fieldName}Success`);
+          const inputField = document.getElementById(fieldName);
+
+          // Only clear if elements exist
+          if (errorDiv) errorDiv.style.display = "none";
+          if (successDiv) successDiv.style.display = "none";
+          if (inputField) inputField.classList.remove("valid", "invalid");
+        });
+      }
+      // Add this after your functions:
+      formFields.forEach((fieldName) => {
+        const field = document.getElementById(fieldName);
+        if (field) {
+          field.addEventListener("input", function () {
+            const result = validateField(fieldName, this.value);
+            showValidationFeedback(fieldName, result);
+          });
+        }
+      });
+      console.log("🎓 Regex Tutorial - Check these examples:");
+      console.log("Name pattern test:", patterns.firstName.test("John")); // true
+    </script>
+  </body>
+</html>

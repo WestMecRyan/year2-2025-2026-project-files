@@ -1,0 +1,456 @@
+ you want to land a job as a
+JavaScript developer you not only need
+to understand what closures are but you
+need to have a Mastery over how they
+work and that's because nearly any
+JavaScript job out there is going to ask
+you interview questions about closures
+and they're going to be rather tricky so
+in this video to get you prepared for
+that interview I'm not only going to
+explain what closures are how they work
+and why they're important but I'm also
+going to go over some common interview
+questions you're going to get asked
+related to closures that way you're
+prepared for anything they can throw at
+you and if you like this video you're
+definitely going to love my JavaScript
+simplified course I'll link it in the
+description for you it's just like this
+where I cover really complicated topics
+in great detail and simplify them for
+you so if you're interested that's going
+to be linked down in the description for
+you welcome back to web dev simplified
+my name is Kyle and my job is to
+simplify the web for you so you can
+start building your dream project sooner
+What Is A Closure
+and when a lot of people think of
+closures they actually get confused with
+scoping in JavaScript and that's because
+closures and scoping have a lot of
+overlap between the two for example this
+code on the Le hand side of my screen
+doesn't use closures at all it's just
+using the way JavaScript handles scoping
+so if you don't already have a good
+grasp of how scoping Works in JavaScript
+I highly recommend checking out my
+complete crash course video on scoping
+I'll link it in the cards in description
+for you before you start with this video
+because closures is just a special
+version of scoping and the entire idea
+behind closures is essentially when you
+have one function that executes some
+code and then there's a separate
+function inside of that function that
+uses the code inside of the first
+function function that's the way a
+closure works so let me show you a quick
+example of what that would look like
+we're just going to simplify this code
+we're going to have this function we're
+just going to call it funk one doesn't
+really matter what it does and inside of
+here we're just going to create a
+variable such as age and then down here
+we're going to have a function we're
+going to call this funk
+2 just like this and inside of here
+we're just going to console.log outage
+there we go pretty straightforward and
+then down here we're going to return
+Funk two from Funk one and then down
+here I can get essentially whatever the
+reference to my function is by calling
+Funk one what that's going to do is it's
+going to call this function and it's
+going to return to me a brand new
+function that right here console logs my
+age so I can call that down here now if
+I actually run my code you can see it
+prints out 29 just like before and the
+thing that is printing that out is this
+fun called down here you can see if I
+remove that there's nothing actually
+happening so if I bring that back you
+can see 29 gets printed out this is
+essentially the setup for a closure so a
+lot of times if you see a function with
+another function defined inside of it
+and that function is being returned
+you're almost always dealing with some
+type of closure inside a JavaScript now
+I know if you're just getting started
+with JavaScript especially this code
+might be complicated to understand so
+before we start diving into the
+nitty-gritty of closures I first want to
+make sure we understand what's going on
+here so essentially let's forget about
+this entire section with funk 2 right
+here all this code fun one is doing is
+creating a variable that has a value of
+29 that's literally all that this is
+doing and then we're creating a brand
+new function that's using that variable
+and all it does is log it out and we're
+returning that function so essentially
+Funk one all it's doing is creating a
+variable for for us and returning us a
+function that we can call that uses that
+variable that's all that's happening so
+when we call fun one it returns to us a
+value we'll just call this result so
+it's maybe a little bit easier to see
+what's going on it returns to a sum
+result and this result is just this
+function right here and it calls this
+function whenever we call result and you
+can see it's console log in that age of
+29 that's exactly how this code is
+working so the idea behind a closure is
+if you have a function that defines some
+type of values whether you're defining a
+variable here or maybe it takes in a
+parameter both cases is going to work
+just fine essentially anytime you have a
+function with some scope inside of it
+some variables inside of it that are
+used inside of another function that's
+going to be a closure and the reason
+this is called a closure is because
+normally when you execute a function all
+the things in that function no longer
+exist anymore they go through a process
+called garbage collection which if
+you're not familiar with I'll link again
+a video in the cards in description that
+goes in depth into it but essentially
+JavaScript just deletes those variables
+completely from memory and pretends they
+never exist but a closure is a little
+bit different because this fun two that
+we have here depends on the value of our
+age variable iable so instead of getting
+rid of that age variable like would
+normally happen when a function is
+finished executing instead JavaScript
+says you know what this age variable is
+important for this other function so I'm
+going to keep it in memory technically
+it stores this in the Heap based memory
+but that's not really important to
+understand it just says you know what
+I'm going to keep this in memory for
+long term until I no longer need it when
+this function is no longer accessible so
+I know closures sound really complicated
+and it's really confusing what they look
+like but really all the closure is is
+just following normal scoping rules in
+JavaScript but when you have a function
+that returns another function or has a
+function inside of it that's used in
+other places it's essentially saying
+keep the scope of whatever this function
+is even after the function finishes
+that's all a closure is and anytime you
+see this type of format where you have a
+function inside of another function
+you're dealing with a closure another
+important thing to understand about how
+these closures work is they actually
+always are going to be using the most
+upto-date value for that variable for
+example let's say that we change this to
+an age variable that we can change and
+then down here we say age is equal to 30
+you may think that this is going to
+print out 29 because that's what the age
+variable is declared as before we call
+our function but actually you'll see it
+prints out 30 and that's because it's
+always going to use the most up-to-date
+value of whatever this variable is
+whenever I call this function so the
+fact that age is 30 here means that it's
+going to print out 30 inside of this
+function right here and I can even
+modify the age variable inside here for
+example every time I call fun two I can
+add one to my age so if I call this
+function a couple times you can see
+every time it's adding one to the
+previous times call from before so it's
+keeping this state entirely up to date
+and constantly keeping this variable
+memory until it's no longer needed and
+that's the whole idea of this closure is
+it's keeping this around longer than it
+normally would because this other
+function needs this variable in order to
+function now in an interview you may be
+Why Are Closures Important
+asked why closures are important or what
+you can do with closures and to be
+honest a lot of the things that were
+really important for closures are no
+longer nearly as important as they used
+to be because of newer features in
+JavaScript for example one of the many
+benefits to closures is that it gave you
+a really easy way to create a private
+variable that couldn't be accessed
+anywhere and that's because in this code
+this age variable is not accessible
+anywhere outside of funk one you can see
+I can't access it anywhere outside of
+here which means I can't manually change
+this age variable I can't see you know
+age is equal to 25 that's just going to
+throw me an error because this age
+variable is not accessible inside of
+here and you can see it makes no changes
+to my actual code and technically if I
+was in strict mode inside of JavaScript
+you'll see that this will actually throw
+me an error instead but that's another
+video topics that I'm not going to cover
+here if I do have a video on it I'll
+link it in the cards and description for
+you but it used to be a way for creating
+private variables this is no longer
+nearly as important though because with
+module based JavaScript where you have
+module files you can import you can
+really easily create variables that you
+don't export from the module which in
+essence creates essentially a private
+variable and if you want to learn more
+about module based JavaScript I have a
+video I'll link that in the cards and
+description it's really important to
+understand because it's how most modern
+JavaScript is written now another use
+case for closures that's something that
+is actually still useful even though you
+may not see it that often is it allows
+you to create functions that essentially
+can use parameters to do other things so
+let's say that I can create a function
+right here that's called like create
+element element Creator something like
+that and this is going to take in some
+type of value maybe the element that I
+want to create and by default let's just
+say it's going to be a div element but
+it doesn't really matter we'll just say
+it's going to take in an element and
+then what this is going to do is it's
+going to return to us a function and we
+can just do this in line as an arrow
+function if you don't know what Arrow
+functions are again I'll link a video in
+the cards and description for you but
+this function right here is just going
+to return document. create element and
+it's going to take in whatever that
+element type is that we want to create
+so now I can say element Creator and
+this is going to be for creating any div
+element so now I have a function which
+is going to be called div Creator or
+maybe we'll just call it create div
+there we go so now anytime I call create
+div this is going to return to me
+essentially a brand new div based
+element so I can call create div and I
+can do the same thing for a span Creator
+so this one's going to be for creating
+span elements and now I can come in here
+and say that I'm going to have a span
+Creator and if I call that function now
+essentially I'm creating three divs and
+I'm creating one span that I can use
+however I want inside of my code so it's
+a really great technique to be able to
+say okay you know what I want to be able
+to create elements really easily and I
+can just pass in what the type of
+element is and it gives me a brand new
+function that allows me to create them
+obviously this is a very simple example
+but you can imagine your code is much
+more complex for what's going on in this
+function and it allows you to do a
+really easy way to create essentially
+helper functions that have certain
+parameters already predefined inside of
+them this is a use case that you will
+see inside of code and is still useful
+because it's pretty much the best way to
+do this type of thing so we've talked
+about what closures are and we just
+Closure Interview Questions
+finished talking about some of the use
+cases that closures have inside a
+JavaScript so now I want to talk about
+some of the trickier interview questions
+that you're going to get asked related
+to closures that's going to really help
+you impress the people that are
+interviewing you and one of the most
+common if not the most common closure
+based question you're going to get is
+going to look something like this we're
+going to have a for loop we're going to
+say let I equal to zero I is less than
+than three i++ a very simple for Loop
+that just executes three separate times
+and inside of here we're going to run a
+set timeout or whatever it is it doesn't
+really matter but it's going to be some
+type of asynchronous function like this
+that's going to console. logi and then
+we're going to come in here and we're
+going to say that it's going to have 100
+millisecond delay so the question
+essentially asks what do you think that
+this code is going to be printing out
+and if you may think the code's going to
+print out 012 and we save and you'll
+notice that is exactly what the code
+prints out but a lot of times when they
+ask you these particular questions
+instead of using let here they're going
+to be using VAR and now you're going to
+notice that it's going to give us
+completely different results when it
+prints out instead of 012 it's going to
+give us the result 333 if I give this a
+save you can see once that finished
+executing it printed out three three
+separate times so instead of printing
+out 012 it printed out 3 33 now this is
+probably really confusing to you and
+it's confusing to most people honestly
+but I'm going to explain exactly why
+this is that way if you get asked an
+interview question like this you can
+understand exactly what's going on and
+it's all related to how scoping and
+closures work together so when you're
+using a var-based variable VAR is
+different than let and cons because
+instead of being block scoped VAR is
+essentially scoped a little bit more
+globally it's more function based scoped
+so here what's happening is it's taking
+this VAR I equals z and essentially it's
+saying you know what we actually have a
+variable declared up here called I and
+by default it's going to be equal to
+undefined and all we're doing down here
+is setting I equal to zero and each time
+you run this code we're just adding
+adding one to I every single time so we
+have One Singular I variable declared at
+the very top of our function here or top
+of our file and we're just updating that
+variable in our for Loop that's how the
+VAR variable works and if I actually
+change this to let you'll notice we
+still get the exact same thing where
+three gets printed out three separate
+times that's just because if you define
+the variable up here you have one single
+instance of that variable and when we
+talked about closures we said the
+closure is always going to use the most
+upto-date version of that variable so
+when we run this for Loop it starts out
+at zero it adds one to one and adds one
+again to two and adds one again to three
+and at this point three is obviously not
+less than three so the four Loop
+finishes then 100 millisecond later our
+set timeout runs and it prints out three
+three separate times because we have one
+Global I variable which is always using
+the most upto-date value for now the
+difference is if we use let here instead
+of having this variable Glee globally
+defined up here like this instead what's
+happening is we have three separate I
+variables being created one for each
+iteration of our for Loop and that's
+because let and con as well are both
+block scoped which means anytime you
+have curly braces like this it
+essentially is using a brand new
+variable every single time so the first
+time we run this I is equal to zero and
+then the second time we run this we have
+a brand new I variable which is going to
+be equal to one and then we have a brand
+new I variable which is equal to two
+that is why when we actually save and
+run this code we get 012 if we're using
+let here while if we use VAR we instead
+get 3 33 being printed out because of
+how those different variables work
+inside of scoping now if this talk of
+let versus VAR and other things is
+confusing for you I have a full video
+covering the differences between let VAR
+and const I'll link in the cards in
+description for you and if you reference
+that video along with my scoping based
+video This should hopefully all kind of
+come together into one cohesive thought
+that really starts to make a lot of
+sense but this right here is the most
+common interview question you're going
+to get asked and the thing you want to
+look for is whether or not they're using
+VAR or let if they're using let it'll
+work just like you normally expect it to
+while VAR is kind of interesting because
+of the way that it works with hoisting
+now I know this is all confusing but
+honestly the most important thing to
+understand about closures is that they
+work just like normal scoping but it's
+kind of a special case for when you have
+functions inside of other functions
+that's really all you need to understand
+about closures in order to be a master
+of them now if you enjoyed this video
+and you really liked this deep dive
+approach you're going to love my
+JavaScript simplified course I'll link
+it in the description for you it's a
+full complete course that covers
+literally everything you ever need to
+know about JavaScript not only to be a
+junior developer but to even take your
+skills to a more intermediate and
+midlevel developer it truly covers
+everything that you need to know and is
+absolutely massive I'll link that down
+in the description for you also if you
+want something free you can check out I
+have multiple free pdf cheat sheets for
+different JavaScript Concepts such as
+the different Dom traversal methods or
+maybe even different array methods that
+you may want to know as a JavaScript
+developer I'll link those in the
+description below for you too they're
+completely free for you to download with
+that said thank you very much for
+watching and have a good day

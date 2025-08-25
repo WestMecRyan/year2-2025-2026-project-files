@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Form Validation Tutorial</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://drive.google.com/uc?id=1xTkMkhjX350bTk1q0hZXm6RwQKKK0j4T');
+            background-size: cover;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            min-height: 100vh;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        img#banner-logo {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #nav-list {
+            background: linear-gradient(to bottom, black 1%, maroon, rgb(179, 20, 25));
+            height: 45px;
+            overflow: hidden;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100%;
+        }
+
+        li a {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        li a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        h1 {
+            color: maroon;
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .form-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .form-section {
+            flex: 1;
+            min-width: 300px;
+            background-color: beige;
+            border-radius: 15px;
+            border: 2px solid maroon;
+            padding: 20px;
+        }
+
+        .section-header {
+            background-color: maroon;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 13px 13px 0 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: maroon;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input.valid {
+            border-color: green;
+            background-color: #f0fff0;
+        }
+
+        input.invalid {
+            border-color: red;
+            background-color: #fff0f0;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .success-message {
+            color: green;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .regex-info {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .buttons-container {
+            text-align: center;
+            padding: 20px;
+            gap: 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .submit-button {
+            background-color: maroon;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #800000;
+        }
+
+        .clear-button {
+            background-color: #666;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .clear-button:hover {
+            background-color: #555;
+        }
+
+        .tutorial-info {
+            background-color: #e8f4ff;
+            border: 2px solid #0066cc;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px;
+        }
+
+        .stored-data {
+            background-color: #fff;
+            border: 2px solid maroon;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="banner-logo" src="https://drive.google.com/uc?id=1XVrJasLndnCWu2aB1AbxBrHP4CxtZ7YP" alt="Red Ball Pizza Logo">
+
+        <div id="nav-list">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Directions</a></li>
+                <li><a href="#">Coupons</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">Catering</a></li>
+                <li><a href="#">Reviews</a></li>
+            </ul>
+        </div>
+
+        <h1>Regex Form Validation Tutorial</h1>
+
+        <div class="tutorial-info">
+            <h3>🎓 Learning Objectives:</h3>
+            <p>This tutorial demonstrates:</p>
+            <ul>
+                <li><strong>Regex Patterns:</strong> Using ^ (start), $ (end), character sets [a-z], quantifiers +, *, {}</li>
+                <li><strong>String Methods:</strong> trim(), test(), match()</li>
+                <li><strong>Error Handling:</strong> try-catch blocks for validation</li>
+                <li><strong>Local Storage:</strong> Saving and retrieving form data</li>
+                <li><strong>Real-time Validation:</strong> Instant feedback as you type</li>
+            </ul>
+        </div>
+
+        <form id="validationForm">
+            <div class="form-container">
+                <div class="form-section">
+                    <div class="section-header">Personal Information</div>
+
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                        <div class="error-message" id="firstNameError"></div>
+                        <div class="success-message" id="firstNameSuccess"></div>
+                        <div class="regex-info">
+                            <strong>Regex:</strong> /^[A-Za-z]{2,30}$/<br>
+                            <strong>Meaning:</strong> ^ = start, [A-Za-z] = letters only, {2,30} = 2-30 characters, $ = end
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                        <div class="error-message" id="lastNameError"></div>
+                        <div class="success-message" id="lastNameSuccess"></div>
+                        <div class="regex-info">
+                            <strong>Regex:</strong> /^[A-Za-z\s'-]{2,50}$/<br>
+                            <strong>Meaning:</strong> Allows letters, spaces, apostrophes, hyphens (for names like O'Connor, Van-Der)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message" id="emailError"></div>
+                        <div class="success-message" id="emailSuccess"></div>
+                        <div class="regex-info">
+                            <strong>Regex:</strong> /^[^\s@]+@[^\s@]+\.[^\s@]+$/<br>
+                            <strong>Meaning:</strong> [^\s@]+ = no spaces/@ symbols, @ = literal @, \. = literal dot
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+                        <div class="error-message" id="phoneError"></div>
+                        <div class="success-message" id="phoneSuccess"></div>
+                        <div class="regex-info">
+                            <strong>Regex:</strong> /^\(\d{3}\)\s\d{3}-\d{4}$/<br>
+                            <strong>Meaning:</strong> \( \) = literal parentheses, \d{3} = exactly 3 digits, \s = space
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="section-header">Address Information</div>
+
+                    <div class="form-group">
+                        <label for="streetAddress">Street Address *</label>
+                        <input type="text" id="streetAddress" name="streetAddress" placeholder="123 Main St" required>
+                        <div class="error-message" id="streetAddressError"></div>
+                        <div class="success-message" id="streetAddressSuccess"></div>
+                        <div class="regex-info">
+                            <strong>Regex:</strong> /^\d+\s+[A-Za-z\s.,-]+$/g<br>
+                            <strong>Meaning:</strong> \d+ = one or more digits, \s+ = one or more spaces, g = global flag
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" name="city" placeholder="Phoenix" required>
+                        <div class="error-message" id="cityError"></div>
+                        <div class="success-message" id="citySuccess"></div>
+                        <div class="regex-info">
+                            <strong>Regex:</strong> /^[A-Za-z\s.-]{2,50}$/<br>
+                            <strong>Meaning:</strong> Letters, spaces, periods, hyphens (for cities like St. Louis)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State *</label>
+                        <input type="text" id="state" name="state" placeholder="AZ" maxlength="2" required>
+                        <div class="error-message" id="stateError"></div>
+                        <div class="success-message" id="stateSuccess"></div>
+                        <div class="regex-info">
+                            <strong>Regex:</strong> /^[A-Z]{2}$/<br>
+                            <strong>Meaning:</strong> Exactly 2 uppercase letters
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zipCode">ZIP Code *</label>
+                        <input type="text" id="zipCode" name="zipCode" placeholder="85001" required>
+                        <div class="error-message" id="zipCodeError"></div>
+                        <div class="success-message" id="zipCodeSuccess"></div>
+                        <div class="regex-info">
+                            <strong>Regex:</strong> /^\d{5}(-\d{4})?$/<br>
+                            <strong>Meaning:</strong> \d{5} = 5 digits, (-\d{4})? = optional dash + 4 digits
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons-container">
+                <button type="submit" class="submit-button">Validate & Save Data</button>
+                <button type="button" class="clear-button" onclick="clearForm()">Clear Form</button>
+                <button type="button" class="clear-button" onclick="showStoredData()">Show Stored Data</button>
+                <button type="button" class="clear-button" onclick="clearStorage()">Clear Storage</button>
+            </div>
+        </form>
+
+        <div class="stored-data" id="storedDataDisplay" style="display: none;">
+            <h3>📦 Data in Local Storage:</h3>
+            <pre id="storageContent"></pre>
+        </div>
+    </div>
+
+    <script>
+        // Regex patterns for validation - Educational examples with different techniques
+        const patterns = {
+            // ^ = start of string, $ = end of string
+            firstName: /^[A-Za-z]{2,30}$/,
+
+            // Character sets [A-Za-z\s'-] allow letters, spaces, apostrophes, hyphens
+            lastName: /^[A-Za-z\s'-]{2,50}$/,
+
+            // Email pattern: [^\s@]+ means "one or more characters that are NOT space or @"
+            email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+
+            // Phone pattern with escaped parentheses \( \) and literal characters
+            phone: /^\(\d{3}\)\s\d{3}-\d{4}$/,
+
+            // Address with global flag /g - starts with digits, followed by street name
+            streetAddress: /^\d+\s+[A-Za-z\s.,-]+$/g,
+
+            // City allows letters, spaces, periods, hyphens
+            city: /^[A-Za-z\s.-]{2,50}$/,
+
+            // State: exactly 2 uppercase letters
+            state: /^[A-Z]{2}$/,
+
+            // ZIP: 5 digits with optional -4 extension using ? quantifier
+            zipCode: /^\d{5}(-\d{4})?$/
+        };
+
+        // Error messages for each field
+        const errorMessages = {
+            firstName: "First name must contain only letters (2-30 characters)",
+            lastName: "Last name must contain only letters, spaces, apostrophes, or hyphens (2-50 characters)",
+            email: "Please enter a valid email address (user@domain.com)",
+            phone: "Phone must be in format: (555) 123-4567",
+            streetAddress: "Address must start with a number followed by street name",
+            city: "City must contain only letters, spaces, periods, or hyphens (2-50 characters)",
+            state: "State must be exactly 2 uppercase letters (e.g., AZ, CA)",
+            zipCode: "ZIP code must be 5 digits or 5+4 format (12345 or 12345-6789)"
+        };
+
+        // Function to validate individual field with try-catch error handling
+        function validateField(fieldName, value) {
+            try {
+                // Trim whitespace - important for user input cleaning
+                const trimmedValue = value.trim();
+
+                if (!trimmedValue) {
+                    throw new Error(`${fieldName} is required`);
+                }
+
+                const pattern = patterns[fieldName];
+
+                // Reset the global flag if it exists (important for /g flag usage)
+                if (pattern.global) {
+                    pattern.lastIndex = 0;
+                }
+
+                // Test the pattern against the trimmed value
+                const isValid = pattern.test(trimmedValue);
+
+                if (!isValid) {
+                    throw new Error(errorMessages[fieldName]);
+                }
+
+                return { isValid: true, message: "✓ Valid format" };
+
+            } catch (error) {
+                return { isValid: false, message: error.message };
+            }
+        }
+
+        // Function to show validation feedback
+        function showValidationFeedback(fieldName, result) {
+            const errorDiv = document.getElementById(`${fieldName}Error`);
+            const successDiv = document.getElementById(`${fieldName}Success`);
+            const inputField = document.getElementById(fieldName);
+
+            if (result.isValid) {
+                errorDiv.style.display = 'none';
+                successDiv.textContent = result.message;
+                successDiv.style.display = 'block';
+                inputField.classList.remove('invalid');
+                inputField.classList.add('valid');
+            } else {
+                successDiv.style.display = 'none';
+                errorDiv.textContent = result.message;
+                errorDiv.style.display = 'block';
+                inputField.classList.remove('valid');
+                inputField.classList.add('invalid');
+            }
+        }
+
+        // Add real-time validation to all form fields
+        const formFields = ['firstName', 'lastName', 'email', 'phone', 'streetAddress', 'city', 'state', 'zipCode'];
+
+        formFields.forEach(fieldName => {
+            const field = document.getElementById(fieldName);
+
+            // Validate on input (real-time) and on blur (when user leaves field)
+            field.addEventListener('input', function() {
+                const result = validateField(fieldName, this.value);
+                showValidationFeedback(fieldName, result);
+            });
+
+            field.addEventListener('blur', function() {
+                const result = validateField(fieldName, this.value);
+                showValidationFeedback(fieldName, result);
+            });
+        });
+
+        // Form submission handler with comprehensive validation and local storage
+        document.getElementById('validationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            let formData = {};
+            let allValid = true;
+
+            // Validate all fields
+            formFields.forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                const result = validateField(fieldName, field.value);
+
+                showValidationFeedback(fieldName, result);
+
+                if (result.isValid) {
+                    // Store trimmed value in form data
+                    formData[fieldName] = field.value.trim();
+                } else {
+                    allValid = false;
+                }
+            });
+
+            if (allValid) {
+                try {
+                    // Add timestamp to the data
+                    formData.timestamp = new Date().toISOString();
+                    formData.submissionId = Date.now(); // Unique ID for this submission
+
+                    // Store in localStorage - demonstrate local storage usage
+                    const existingData = JSON.parse(localStorage.getItem('formSubmissions') || '[]');
+                    existingData.push(formData);
+                    localStorage.setItem('formSubmissions', JSON.stringify(existingData));
+
+                    // Also store the latest submission separately
+                    localStorage.setItem('latestSubmission', JSON.stringify(formData));
+
+                    alert('✅ Form validated successfully and saved to local storage!\n\nClick "Show Stored Data" to view saved data.');
+
+                    // Optionally clear the form after successful submission
+                    // clearForm();
+
+                } catch (error) {
+                    console.error('Error saving to localStorage:', error);
+                    alert('❌ Form is valid but there was an error saving to storage: ' + error.message);
+                }
+            } else {
+                alert('❌ Please fix all validation errors before submitting.');
+            }
+        });
+
+        // Utility functions for demonstration
+        function clearForm() {
+            document.getElementById('validationForm').reset();
+
+            // Clear all validation feedback
+            formFields.forEach(fieldName => {
+                const errorDiv = document.getElementById(`${fieldName}Error`);
+                const successDiv = document.getElementById(`${fieldName}Success`);
+                const inputField = document.getElementById(fieldName);
+
+                errorDiv.style.display = 'none';
+                successDiv.style.display = 'none';
+                inputField.classList.remove('valid', 'invalid');
+            });
+        }
+
+        function showStoredData() {
+            try {
+                const allSubmissions = JSON.parse(localStorage.getItem('formSubmissions') || '[]');
+                const latestSubmission = JSON.parse(localStorage.getItem('latestSubmission') || 'null');
+
+                const displayData = {
+                    totalSubmissions: allSubmissions.length,
+                    latestSubmission: latestSubmission,
+                    allSubmissions: allSubmissions
+                };
+
+                document.getElementById('storageContent').textContent = JSON.stringify(displayData, null, 2);
+                document.getElementById('storedDataDisplay').style.display = 'block';
+
+            } catch (error) {
+                alert('Error reading from localStorage: ' + error.message);
+            }
+        }
+
+        function clearStorage() {
+            if (confirm('Are you sure you want to clear all stored form data?')) {
+                localStorage.removeItem('formSubmissions');
+                localStorage.removeItem('latestSubmission');
+                document.getElementById('storedDataDisplay').style.display = 'none';
+                alert('✅ Local storage cleared!');
+            }
+        }
+
+        // Load any existing data on page load (demonstration of data persistence)
+        window.addEventListener('load', function() {
+            const latestData = localStorage.getItem('latestSubmission');
+            if (latestData) {
+                console.log('Found existing data in localStorage:', JSON.parse(latestData));
+                // Uncomment to auto-populate form with last submission:
+                // populateFormWithStoredData(JSON.parse(latestData));
+            }
+        });
+
+        // Optional: Function to populate form with stored data
+        function populateFormWithStoredData(data) {
+            formFields.forEach(fieldName => {
+                if (data[fieldName]) {
+                    const field = document.getElementById(fieldName);
+                    field.value = data[fieldName];
+
+                    // Trigger validation
+                    const result = validateField(fieldName, data[fieldName]);
+                    showValidationFeedback(fieldName, result);
+                }
+            });
+        }
+
+        // Educational console outputs for students to examine
+        console.log('🎓 Regex Tutorial - Check these examples:');
+        console.log('Name pattern test:', patterns.firstName.test('John')); // true
+        console.log('Name pattern test:', patterns.firstName.test('Jo')); // true (exactly 2 chars)
+        console.log('Name pattern test:', patterns.firstName.test('J')); // false (too short)
+        console.log('Email pattern test:', patterns.email.test('user@domain.com')); // true
+        console.log('Phone pattern test:', patterns.phone.test('(555) 123-4567')); // true
+        console.log('ZIP pattern test:', patterns.zipCode.test('12345')); // true
+        console.log('ZIP pattern test:', patterns.zipCode.test('12345-6789')); // true
+        console.log('ZIP pattern test:', patterns.zipCode.test('123456')); // false
+    </script>
+</body>
+</html>

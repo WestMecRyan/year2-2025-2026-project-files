@@ -1,0 +1,140 @@
+closures, Symbols, WeakMaps, class private fields, and Proxies are a few techniques that can be used to create a private variable in JavaScript. Every technique has benefits and drawbacks, so it's crucial to pick the one that best suits your requirements.
+
+Like many other programming languages, JavaScript has the idea of private and public variables. Private variables can only be accessed and changed by code that is also part of the same scope, but public variables can be accessed and changed by any code. Let's look at the different techniques to create a private variable in JavaScript.
+
+Using Closure
+The closure method is one way to create a private variable in JavaScript. A function is a closure if it can access variables defined in its parent function's scope even after the parent function has finished and returned. We can define a variable inside a function, making it a private variable that can only be accessible by code inside that function.
+
+Example
+
+Open Compiler
+<html>
+<body>
+   <div id="demo"></div>
+   <script>
+      function createPrivateVariable() {
+         let privateVariable = "This is a private variable";
+         return {
+            getValue: function () {
+               return privateVariable;
+            },
+            setValue: function (value) {
+               privateVariable = value;
+            },
+         };
+      }
+      let privateVar = createPrivateVariable();
+      document.getElementById("demo").innerHTML = privateVar.getValue();
+   </script>
+</body>
+</html>
+The function createPrivateVariable in the example above returns an object having the methods getValue and setValue. These methods can retrieve or change the value of the privateVariable declared within the parent function since they have access to it. A reference error would occur if you attempted to access the privateVariable from outside the function.
+
+Using Symbol data type
+Using the Symbol data type is a second method for creating private variables. Symbols can be used as property keys because they are distinct, non-string identifiers. They cannot be easily accessed or altered by outside programs since they are unique.
+
+Open Compiler
+let privateVariable = Symbol();
+let obj = {
+   [privateVariable]: "This is a private variable"
+};
+console.log(obj[privateVariable]);
+Example
+We can use the above code as follows ?
+
+Open Compiler
+<html>
+<body>
+   <div id="demo"></div>
+   <script>
+      let privateVar = Symbol();
+      let obj = {
+         [privateVar]: "This is a private variable"
+      };
+      Object.defineProperty(obj, 'getValue', {
+         get: function() {
+            return obj[privateVar];
+         }
+      });
+      document.getElementById("demo").innerHTML = obj.getValue;
+   </script>
+</body>
+</html>
+In this example, a Symbol named privateVariable has been defined and is used as a property key for an object. Because it's a Symbol, the value of the property cannot be obtained by using the dot notation, but it may be accessible through the object by using the square bracket notation.
+
+Using WeakMaps
+WeakMaps can be used as a third method to construct private variables. The JavaScript engine only weakly references the key-value pair in a WeakMap, which lets you link an object with a key. This makes it more difficult to mistakenly maintain a reference to the private variable since the garbage collector will destroy the key-value pair if there are no other references to the key.
+
+Example
+
+Open Compiler
+<html>
+<body>
+   <div id="demo"></div>
+   <script>
+      let privateVariables = new WeakMap();
+      let obj = {};
+      privateVariables.set(obj, "This is a private variable");
+      document.getElementById("demo").innerHTML = privateVariables.get(obj);
+   </script>
+</body>
+</html>
+In this example, we've made a WeakMap named privateVariables that we use to hold an object's private variables. The get() method is used to get the private variable once it has been linked to the object using the set() method. The private variable, however, cannot be accessible from outside the scope where the object was formed because it can only be accessed when you have a reference to the object.
+
+Using Object-oriented Class Syntax
+The use of object-oriented class syntax can also be used to create private variables. JavaScript's class keyword enables us to define classes, which serve as templates for objects. A class can define a variable with the # symbol before the variable name to generate private variables; this is an experimental feature that indicates a private variable. It is not recommended to utilise this feature in production code as it is not currently widely supported.
+
+Example
+
+Open Compiler
+<html>
+<body>
+   <p id="output"></p>
+   <script>
+      class MyClass {
+         #privateVariable = "This is a private variable";
+         getValue() {
+            return this.#privateVariable;
+         }
+         setValue(value) {
+            this.#privateVariable = value;
+         }
+      }
+      let obj = new MyClass();
+      document.getElementById("output").innerHTML = obj.getValue(); // "This is a private variable"
+      obj.setValue("New value");
+      document.getElementById("output").innerHTML = obj.getValue(); // "New value"
+   </script>
+</body>
+</html>
+In this example, a class called MyClass has been constructed using the private variables #privateVariable, getValue, and setValue. A reference error would occur if a method outside of the class attempted to access a private variable that can only be accessible by methods inside the class.
+
+Using Proxy Object
+Finally, using the Proxy object is another option to construct private variables. An object that can be used to intercept or alter the behaviour of other objects is known as a proxy. You can make a private variable that can only be accessible by code that has the Proxy by enclosing an object in a Proxy.
+
+Example
+
+Open Compiler
+<html>
+<body>
+   <div id="demo"></div>
+   <script>
+      let privateVariable = "This is a private variable-proxy obj.";
+      let handler = {
+         get: function (target, name) {
+            if (name === "privateVariable") {
+               return privateVariable;
+            }
+         },
+         set: function (target, name, value) {
+            if (name === "privateVariable") {
+               privateVariable = value;
+            }
+         },
+      };
+      let obj = new Proxy({}, handler);
+      document.getElementById("demo").innerHTML = obj.privateVariable;
+   </script>
+</body>
+</html>
+In this example, a Proxy with a handler with getter and setter methods has been built. These methods can retrieve or change the value of the private variable that was defined outside of the Proxy and have access to it. The private variable would, however, not be accessible from outside the Proxy due to a reference error.
