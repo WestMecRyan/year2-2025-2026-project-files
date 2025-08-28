@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fetch-img</title>
+  </head>
+  <body>
+    <div class="main-content">
+      <img src="" alt="" id="main-img" />
+    </div>
+    <script>
+      //   function fetchImageThen() {
+      //     fetch("sunrise-low-res.jpg")
+      //       .then((res) => res.blob())
+      //       .then((data) => {
+      //         console.log(data);
+      //         document.querySelector("#main-img").src = URL.createObjectURL(data);
+      //       });
+      //   }
+      async function fetchImageAsync() {
+        try {
+          const response = await fetch("sunrise-low-res.jpg");
+          console.log(response);
+          if (!data.ok) {
+            throw new Error();
+          }
+          const data = await response.blob();
+          document.querySelector("#main-img").src = URL.createObjectURL(data);
+        } catch (err) {
+          console.log(Object.getOwnPropertyNames(err));
+          console.dir(err);
+          console.log("big problem", err.message);
+        }
+      }
+      document.addEventListener("DOMContentLoaded", fetchImageAsync);
+    </script>
+  </body>
+</html>
