@@ -1,0 +1,385 @@
+Unit 2B: Responsive Forms & Database Integration
+Course: Software and App Design (Year 2)
+ Duration: 2 Weeks (10 Days, 55 minutes each)
+ Lab Focus: Yes (75%+ hands-on coding)
+Unit Overview
+This comprehensive two-week unit bridges front-end form design with back-end data management. In Week 1, students master responsive form creation using Bootstrap, implement comprehensive client-side and server-side validation using regular expressions, and work with JSON file storage to simulate database operations. Week 2 introduces MongoDB as a production-ready database solution, teaching students to migrate their JSON-based projects to a real NoSQL database using Mongoose ODM, while implementing professional CRUD operations through Express Router.
+
+Week 1: Responsive Forms with Bootstrap & JSON Storage
+Days 1-2: Bootstrap Form Foundations & Responsive Design
+Standards Covered:
+15.2 W3C Standards (HTML, CSS, JavaScript standards)
+15.3 Accessibility (ADA compliance in forms)
+15.4 Responsive Design (Bootstrap framework implementation)
+15.6 GUI Objects (form inputs, buttons, dropdowns)
+15.11 CSS and JS Frameworks (Bootstrap implementation)
+Learning Objectives:
+Create responsive forms using Bootstrap's grid system and form components
+Implement accessible form elements following ADA compliance guidelines
+Apply Bootstrap form validation classes and styling
+Design mobile-first responsive forms that adapt to different screen sizes
+Key Vocabulary:
+Bootstrap Grid System
+Form Validation States
+Input Groups
+Form Controls
+Responsive Breakpoints
+Accessibility Labels
+ARIA Attributes
+Daily Breakdown:
+Day 1: Bootstrap Form Components
+Bellwork: "What makes a form user-friendly on both desktop and mobile?"
+Activity 1: Bootstrap CDN setup and grid system review (15 min)
+Activity 2: Creating basic form structure with Bootstrap classes (20 min)
+Activity 3: Implementing input groups, labels, and help text (15 min)
+Closure: Quick form component identification quiz
+Day 2: Responsive Design & Accessibility
+Bellwork: "What challenges do users with disabilities face when filling out online forms?"
+Activity 1: Mobile-first responsive form layout (20 min)
+Activity 2: Adding ARIA labels and accessibility features (15 min)
+Activity 3: Testing forms across different screen sizes (15 min)
+Closure: Accessibility checklist completion
+
+Days 3-4: Client-Side Validation with RegEx
+Standards Covered:
+11.4 Variable Assignment and Sanitization (input validation)
+1.5 User Input Sanitization (preventing malicious input)
+5.2 Boolean Expressions (validation logic)
+15.2 W3C Standards (HTML5 validation)
+Learning Objectives:
+Write regular expressions for common validation patterns (email, phone, password)
+Implement real-time client-side validation using JavaScript
+Create custom validation messages and error handling
+Apply input sanitization techniques to prevent XSS attacks
+Key Vocabulary:
+Regular Expressions (RegEx)
+Input Sanitization
+Client-Side Validation
+XSS Prevention
+Pattern Matching
+Validation States
+Error Messages
+Daily Breakdown:
+Day 3: Regular Expression Fundamentals
+Bellwork: "What are common patterns you see in email addresses or phone numbers?"
+Activity 1: RegEx basics and pattern building (20 min)
+Activity 2: Creating validation patterns for email, phone, password (20 min)
+Activity 3: Testing patterns with online RegEx tools (10 min)
+Closure: Pattern matching challenge
+Day 4: JavaScript Form Validation
+Bellwork: "When should form validation happen - as users type or when they submit?"
+Activity 1: Event listeners for real-time validation (20 min)
+Activity 2: Custom error message display (15 min)
+Activity 3: Form submission prevention for invalid data (15 min)
+Closure: Debug common validation errors activity
+
+Days 5-6: Server-Side Validation & Express Router Setup
+Standards Covered:
+8.3 Web Server Services (server-side scripting)
+11.4 Variable Assignment and Sanitization (server-side input handling)
+1.5 User Input Sanitization (SQL injection prevention)
+16.3 File and Database I/O (JSON file operations)
+Learning Objectives:
+Set up Express Router for organized route handling
+Implement server-side validation using the same RegEx patterns
+Create middleware for input sanitization and validation
+Handle form data securely on the server side
+Key Vocabulary:
+Express Router
+Middleware
+Server-Side Validation
+Input Sanitization
+Route Organization
+Request Body Parsing
+Validation Middleware
+Daily Breakdown:
+Day 5: Express Router & Route Organization
+Bellwork: "Why might we want to organize our routes into separate files?"
+Activity 1: Setting up Express Router modules (15 min)
+Activity 2: Creating RESTful route structure (20 min)
+Activity 3: Implementing route-specific middleware (15 min)
+Closure: Route planning for user management system
+Day 6: Server-Side Validation Implementation
+Bellwork: "What could go wrong if we only validate data on the client side?"
+Activity 1: Creating validation middleware with RegEx (20 min)
+Activity 2: Error handling for validation failures (15 min)
+Activity 3: Testing validation with Postman (15 min)
+Closure: Security vulnerability discussion
+
+Days 7-8: JSON File Storage & CRUD Operations
+Standards Covered:
+16.3 File and Database I/O (JSON file operations)
+16.5 Database Management (CRUD operations)
+11.3 Input/Output Statements (data persistence)
+12.3 Integration Testing (testing CRUD operations)
+Learning Objectives:
+Implement JSON file-based data storage system
+Create complete CRUD (Create, Read, Update, Delete) operations
+Handle concurrent file access and data integrity
+Test all CRUD endpoints thoroughly
+Key Vocabulary:
+CRUD Operations
+JSON File Storage
+Data Persistence
+File System Operations
+Data Integrity
+Concurrent Access
+Atomic Operations
+Daily Breakdown:
+Day 7: JSON Storage Implementation
+Bellwork: "How might we store user data temporarily before implementing a real database?"
+Activity 1: Setting up JSON file storage utilities (15 min)
+Activity 2: Implementing Create and Read operations (25 min)
+Activity 3: Error handling for file operations (10 min)
+Closure: Data structure design review
+Day 8: Update & Delete Operations
+Bellwork: "What challenges might arise when modifying data in a file?"
+Activity 1: Implementing Update operations with validation (20 min)
+Activity 2: Safe Delete operations with confirmation (15 min)
+Activity 3: Testing all CRUD operations (15 min)
+Closure: CRUD operation testing checklist
+
+Days 9-10: Week 1 Integration & Testing
+Standards Covered:
+12.3 Integration Testing (full-stack testing)
+13.4 Using Community Resources (debugging techniques)
+19.3 Components of a Successful App (testing and usability)
+Learning Objectives:
+Integrate front-end forms with back-end CRUD operations
+Perform comprehensive testing of the complete system
+Debug and resolve integration issues
+Document the application and its features
+Day 9: Full Integration
+Complete form-to-database integration
+End-to-end testing
+Bug fixing and optimization
+Day 10: Testing & Documentation
+User acceptance testing
+Code documentation
+Preparation for MongoDB migration
+
+Week 2: MongoDB Integration & Advanced CRUD Operations
+Days 11-12: MongoDB Setup & Mongoose Integration
+Standards Covered:
+10.6 Database Technologies (SQL vs NoSQL)
+16.1 Data Storage Types (cloud and database storage)
+16.6 Database Query Languages (MongoDB MQL)
+8.5 Cloud Service Models (Database as a Service)
+Learning Objectives:
+Set up MongoDB Atlas cloud database
+Install and configure Mongoose ODM
+Design MongoDB schemas for form data
+Establish database connections and error handling
+Key Vocabulary:
+MongoDB Atlas
+Mongoose ODM
+NoSQL Database
+Document-Based Storage
+Schema Definition
+Database Connection
+Connection Pooling
+Daily Breakdown:
+Day 11: MongoDB Atlas Setup
+Bellwork: "What advantages might a cloud database have over local file storage?"
+Activity 1: MongoDB Atlas account setup and cluster creation (15 min)
+Activity 2: Connection string configuration (10 min)
+Activity 3: Mongoose installation and basic connection (20 min)
+Closure: Connection troubleshooting guide
+Day 12: Schema Design with Mongoose
+Bellwork: "How might we structure user data in a document-based database?"
+Activity 1: Creating Mongoose schemas with validation (20 min)
+Activity 2: Setting up schema relationships (15 min)
+Activity 3: Testing schema validation (15 min)
+Closure: Schema design best practices review
+
+Days 13-14: Migrating from JSON to MongoDB
+Standards Covered:
+16.5 Database Management (database operations)
+11.1 Refactoring (improving code maintainability)
+16.3 File and Database I/O (database operations)
+Learning Objectives:
+Refactor existing JSON-based CRUD operations for MongoDB
+Implement Mongoose model methods and queries
+Migrate existing test data to MongoDB
+Update error handling for database operations
+Key Vocabulary:
+Data Migration
+Mongoose Queries
+Model Methods
+Database Indexing
+Query Optimization
+Error Handling
+Data Validation
+Daily Breakdown:
+Day 13: CRUD Migration
+Bellwork: "What steps would you take to safely migrate data from files to a database?"
+Activity 1: Refactoring Create and Read operations (25 min)
+Activity 2: Data migration script creation (20 min)
+Activity 3: Testing migrated operations (5 min)
+Closure: Migration checklist completion
+Day 14: Advanced MongoDB Operations
+Bellwork: "How might we optimize database queries for better performance?"
+Activity 1: Implementing Update and Delete with MongoDB (20 min)
+Activity 2: Adding database indexing (15 min)
+Activity 3: Query optimization and error handling (15 min)
+Closure: Performance comparison discussion
+
+Days 15-16: Advanced CRUD & API Design
+Standards Covered:
+13.3 API Interaction (RESTful API design)
+8.3 Web Server Services (API endpoint design)
+19.6 Project Management Concepts (API documentation)
+Learning Objectives:
+Implement advanced CRUD operations (search, filtering, pagination)
+Create RESTful API endpoints following best practices
+Add query parameters and advanced filtering options
+Document API endpoints for future use
+Key Vocabulary:
+RESTful API Design
+Query Parameters
+Pagination
+API Documentation
+HTTP Status Codes
+Request/Response Patterns
+API Versioning
+Daily Breakdown:
+Day 15: Advanced Query Operations
+Bellwork: "How would you search for specific users in a large database?"
+Activity 1: Implementing search and filtering (20 min)
+Activity 2: Adding pagination to results (15 min)
+Activity 3: Query parameter handling (15 min)
+Closure: Advanced query testing
+Day 16: API Documentation & Best Practices
+Bellwork: "Why is API documentation important for development teams?"
+Activity 1: Creating API documentation (15 min)
+Activity 2: Implementing proper HTTP status codes (15 min)
+Activity 3: API versioning considerations (10 min)
+Closure: API best practices checklist
+
+Days 17-18: Security & Performance
+Standards Covered:
+1.2 Vulnerabilities and Risk Management
+2.3 Privacy Regulations (data protection)
+8.4 Performance Issues (database optimization)
+Learning Objectives:
+Implement database security best practices
+Add input validation and data sanitization at database level
+Optimize database queries for performance
+Understand privacy regulations affecting data storage
+Day 17: Database Security
+Authentication and authorization
+Input validation and sanitization
+Security best practices
+Day 18: Performance & Privacy
+Query optimization
+Data privacy compliance
+Performance monitoring
+
+Days 19-20: Project Integration & Assessment
+Standards Covered:
+19.1 Software Development Methods (project completion)
+19.3 Components of a Successful App (comprehensive testing)
+12.3 Integration Testing (full-stack testing)
+Learning Objectives:
+Complete full-stack integration of responsive forms with MongoDB
+Perform comprehensive testing and debugging
+Present completed project with documentation
+Reflect on the development process and lessons learned
+Day 19: Final Integration
+Complete system integration
+Comprehensive testing
+Bug fixes and optimization
+Day 20: Project Presentation & Assessment
+Student project presentations
+Peer code review
+Unit assessment
+Reflection and next steps
+
+Assessment Strategy
+Formative Assessments
+Daily Coding Challenges: Small coding problems related to daily topics
+Code Reviews: Peer review of form validation and CRUD implementations
+Progress Check-ins: Regular one-on-one discussions about project progress
+Debug Challenges: Troubleshooting broken code scenarios
+Summative Assessments
+Week 1 Project: Complete responsive form with JSON storage and validation
+Week 2 Project: MongoDB migration and advanced CRUD API
+Technical Skills Assessment: Practical coding test covering unit concepts
+Project Presentation: Demonstration of completed full-stack application
+
+Professional Skills Integration
+Complex Communication (Standard 1)
+1.A: Technical documentation and API documentation writing
+1.C: Using developer tools and community resources for problem-solving
+Collaboration (Standard 2)
+2.A: Peer code reviews and pair programming sessions
+2.C: Using Git for version control and collaborative development
+Thinking and Innovation (Standard 3)
+3.A: Problem definition in form validation and database design
+3.C: Evidence-based decision making in technology choices
+Legal and Ethical Practices (Standard 8)
+8.D: Following data privacy regulations and security best practices
+8.F: Taking responsibility for secure coding practices
+
+CTSO Integration
+FBLA Competitive Events Alignment
+Cybersecurity: Input validation and security practices
+Database Design & Applications: MongoDB schema design
+Web Site Development: Responsive form design
+SkillsUSA Connections
+Web Design & Development: Full-stack development practices
+Information Technology Services: Database management and API design
+
+Resources & Tools
+Required Software
+Visual Studio Code with extensions (ES6, MongoDB, Bootstrap)
+Node.js and npm package manager
+MongoDB Atlas account and cluster
+Postman for API testing
+Git for version control
+Key Libraries & Frameworks
+Express.js - Web server framework
+Mongoose - MongoDB object modeling
+Bootstrap 5 - Responsive CSS framework
+express-validator - Server-side validation middleware
+dotenv - Environment variable management
+Learning Resources
+Mozilla Developer Network (MDN) documentation
+MongoDB University courses
+Bootstrap official documentation
+RegEx testing tools (RegExr.com)
+Stack Overflow for community support
+
+Differentiation Strategies
+For Advanced Students
+Implement advanced MongoDB aggregation pipelines
+Add real-time form validation with WebSockets
+Explore database sharding and replication concepts
+Create automated testing suites for API endpoints
+For Struggling Students
+Provide pre-built code templates for complex operations
+Pair programming with stronger students
+Step-by-step debugging guides
+Additional practice with basic concepts before advancing
+Universal Design for Learning
+Visual aids for database concepts and relationships
+Multiple input methods for coding (typing, voice-to-text)
+Clear rubrics and expectations for all assignments
+Choice in project topics while meeting technical requirements
+
+Extension Activities
+Week 1 Extensions
+Implement additional form types (file uploads, date pickers)
+Add advanced Bootstrap components (modals, tooltips)
+Create responsive data tables for displaying stored data
+Implement client-side routing for single-page application
+Week 2 Extensions
+Set up MongoDB replica sets for high availability
+Implement database indexing strategies for performance
+Add full-text search capabilities
+Create database backup and recovery procedures
+Cross-Curricular Connections
+Mathematics: Statistical analysis of form validation patterns
+English Language Arts: Technical writing for API documentation
+Business: Understanding data privacy regulations and compliance
+Art/Design: User experience principles in form design

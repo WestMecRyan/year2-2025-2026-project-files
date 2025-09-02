@@ -1,0 +1,445 @@
+{
+  "theme": "cte-consortium",
+  "slides": [
+    {
+      "title": "Software and App Design\nUnit 2B: Responsive Forms & Database Integration",
+      "subtitle": "Day 1: Bootstrap Form Components",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [],
+      "layout": "title_slide",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Welcome to our two-week unit on responsive forms and database integration. Today we'll start by mastering Bootstrap's form components to create professional, responsive user interfaces."
+    },
+    {
+      "title": "Bellwork",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "Think about the last time you filled out an online form on your phone versus your computer.",
+        "What made the experience easy or frustrating?",
+        "What are 3 features that make a form user-friendly on both desktop and mobile devices?"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 5 minutes\nTeacher: Have students reflect on their personal experiences with forms across devices. This connects to responsive design principles we'll cover today. Call on students to share their thoughts and relate their answers to concepts like touch targets, readability, and ease of navigation.\nStudents: Reflect and write responses in their note-taker, then share when called upon."
+    },
+    {
+      "title": "Today's Objectives",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "Set up Bootstrap CDN and understand the grid system for form layouts",
+        "Create professional form structures using Bootstrap form components",
+        "Implement input groups, labels, and help text for better user experience",
+        "Apply Bootstrap classes for consistent form styling and spacing"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 2 minutes\nTeacher: Read through objectives and ask students which one they're most excited about. Explain that today is foundational - we're building the visual structure before adding functionality.\nStudents: Follow along and identify which objective interests them most."
+    },
+    {
+      "title": "Why Bootstrap for Forms?",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "**Consistency:** Pre-built components that look professional across all devices",
+        "**Speed:** No need to write custom CSS for common form elements",
+        "**Responsive by Default:** Forms automatically adapt to screen sizes",
+        "**Accessibility:** Built-in support for screen readers and keyboard navigation",
+        "**Industry Standard:** Used by millions of websites worldwide"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 3 minutes\nTeacher: Emphasize that Bootstrap saves development time while ensuring professional results. Ask students if they can identify websites that use Bootstrap (hint: many major sites do). Connect this to industry relevance.\nStudents: Listen and take notes on Bootstrap benefits."
+    },
+    {
+      "title": "Bootstrap Grid System Refresher",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "Bootstrap uses a **12-column grid system**",
+        "**Containers:** `.container` or `.container-fluid` wrap your content",
+        "**Rows:** `.row` creates horizontal groups of columns",
+        "**Columns:** `.col-*` classes define how many columns an element spans",
+        "**Responsive breakpoints:** `sm`, `md`, `lg`, `xl`, `xxl`"
+      ],
+      "layout": "title_bullets_and_image",
+      "imageUrl": "https://i.imgur.com/bootstrap-grid-example.png",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 4 minutes\nTeacher: Draw a quick diagram on the board showing the 12-column layout. Emphasize that this system helps create consistent layouts across different screen sizes. Ask students to recall breakpoints from previous Bootstrap lessons.\nStudents: Review their notes from previous Bootstrap lessons and prepare questions about the grid system."
+    },
+    {
+      "title": "Setting Up Bootstrap CDN",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "Create a new HTML file called `registration-form.html`",
+        "Add the Bootstrap 5.3 CSS CDN link in the `<head>` section",
+        "Add the Bootstrap JavaScript bundle before the closing `</body>` tag",
+        "Include a basic HTML5 document structure with proper meta tags"
+      ],
+      "layout": "title_bullets_and_image",
+      "imageUrl": "https://i.imgur.com/bootstrap-cdn-setup.png",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 8 minutes\nTeacher: Model the setup process step by step. Have students follow along on their computers. Provide the CDN links on screen and explain why we use CDN versus local files. Check that everyone has the file created and properly linked.\nStudents: Create the HTML file following teacher instructions. Test that Bootstrap is working by adding a simple Bootstrap button."
+    },
+    {
+      "title": "Code Along: HTML5 Document Setup",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "```html",
+        "<!DOCTYPE html>",
+        "<html lang=\"en\">",
+        "<head>",
+        "    <meta charset=\"UTF-8\">",
+        "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+        "    <title>User Registration Form</title>",
+        "    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">",
+        "</head>",
+        "```"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 5 minutes\nTeacher: Type this code while students follow along. Explain the importance of the viewport meta tag for responsive design. Emphasize proper HTML5 document structure.\nStudents: Type along with the teacher and ensure their file matches exactly."
+    },
+    {
+      "title": "Bootstrap Form Structure Basics",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "**Form Container:** Use `.container` or `.container-fluid` to wrap forms",
+        "**Form Element:** Standard `<form>` tag with proper attributes",
+        "**Form Groups:** Use `.mb-3` class for consistent spacing between form elements",
+        "**Form Controls:** `.form-control` class styles input, select, and textarea elements",
+        "**Labels:** `.form-label` class for consistent label styling"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 4 minutes\nTeacher: Explain each component and how they work together. Show examples of forms with and without proper Bootstrap classes to demonstrate the difference. Emphasize the importance of semantic HTML.\nStudents: Take notes on the key Bootstrap form classes and their purposes."
+    },
+    {
+      "title": "Creating Our First Form Structure",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "We'll build a **User Registration Form** with the following fields:",
+        "• First Name and Last Name (on same row)",
+        "• Email Address",
+        "• Phone Number",
+        "• Password and Confirm Password",
+        "• Date of Birth",
+        "• Terms and Conditions checkbox",
+        "• Submit and Reset buttons"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 2 minutes\nTeacher: Explain that this form will be our project for the entire two weeks. We'll start with structure today, add validation tomorrow, and eventually connect it to a database. Ask students what other fields they might add to a registration form.\nStudents: Visualize the form we'll be building and suggest additional fields they might include."
+    },
+    {
+      "title": "Code Along: Container and Form Setup",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "```html",
+        "<body>",
+        "    <div class=\"container mt-5\">",
+        "        <div class=\"row justify-content-center\">",
+        "            <div class=\"col-md-8 col-lg-6\">",
+        "                <h2 class=\"text-center mb-4\">User Registration</h2>",
+        "                <form id=\"registrationForm\">",
+        "                    <!-- Form fields will go here -->",
+        "                </form>",
+        "            </div>",
+        "        </div>",
+        "    </div>",
+        "</body>",
+        "```"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 5 minutes\nTeacher: Type this code and explain each class: mt-5 for top margin, justify-content-center for centering, col-md-8 col-lg-6 for responsive column sizing. Show how the form will look centered on the page.\nStudents: Follow along and test the layout by refreshing their browser."
+    },
+    {
+      "title": "Adding Text Input Fields",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "**Text inputs** use the `.form-control` class",
+        "**Labels** should have the `for` attribute matching the input's `id`",
+        "**Form groups** use `.mb-3` for consistent bottom margin",
+        "**Required fields** should have the `required` attribute",
+        "**Placeholder text** provides hints to users"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 3 minutes\nTeacher: Demonstrate proper label-input association and explain why semantic HTML matters for accessibility. Show how screen readers use the 'for' attribute.\nStudents: Listen and prepare to code the first name field."
+    },
+    {
+      "title": "Code Along: First Name Field",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "```html",
+        "<!-- First Name Field -->",
+        "<div class=\"mb-3\">",
+        "    <label for=\"firstName\" class=\"form-label\">First Name *</label>",
+        "    <input type=\"text\" class=\"form-control\" id=\"firstName\" ",
+        "           name=\"firstName\" placeholder=\"Enter your first name\" required>",
+        "</div>",
+        "```",
+        "**Key Points:** Notice the `for` attribute, `required` attribute, and consistent class names."
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 4 minutes\nTeacher: Type this code while students follow along. Explain the importance of the 'name' attribute for form processing. Test the field in the browser and show how the label clicks focus the input.\nStudents: Code along and test their form field by clicking the label and typing in the input."
+    },
+    {
+      "title": "Bootstrap Grid for Side-by-Side Fields",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "For **First Name** and **Last Name** on the same row:",
+        "Use Bootstrap's grid system with `.row` and `.col-md-6`",
+        "This creates **2 equal columns** on medium screens and larger",
+        "On smaller screens, they **stack vertically** for better mobile experience",
+        "Always wrap column groups in a `.row` container"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 3 minutes\nTeacher: Explain responsive behavior - side by side on desktop, stacked on mobile. Draw a simple diagram showing this concept. Emphasize mobile-first design principles.\nStudents: Visualize how the layout will change on different screen sizes."
+    },
+    {
+      "title": "Code Along: Name Fields Row",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "```html",
+        "<!-- Name Fields Row -->",
+        "<div class=\"row mb-3\">",
+        "    <div class=\"col-md-6\">",
+        "        <label for=\"firstName\" class=\"form-label\">First Name *</label>",
+        "        <input type=\"text\" class=\"form-control\" id=\"firstName\" name=\"firstName\" required>",
+        "    </div>",
+        "    <div class=\"col-md-6\">",
+        "        <label for=\"lastName\" class=\"form-label\">Last Name *</label>",
+        "        <input type=\"text\" class=\"form-control\" id=\"lastName\" name=\"lastName\" required>",
+        "    </div>",
+        "</div>",
+        "```"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 6 minutes\nTeacher: Replace the previous single field with this two-column layout. Show how to test responsive behavior by resizing the browser window. Point out the mb-3 class is on the row, not individual columns.\nStudents: Update their code and test the responsive behavior by resizing their browser."
+    },
+    {
+      "title": "Input Types and Validation",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "**Email Input:** `type=\"email\"` provides built-in email validation",
+        "**Phone Input:** `type=\"tel\"` optimizes mobile keyboards",
+        "**Password Input:** `type=\"password\"` masks the input text",
+        "**Date Input:** `type=\"date\"` provides a date picker",
+        "**HTML5 validation** works automatically with Bootstrap styling"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 4 minutes\nTeacher: Explain how HTML5 input types provide both validation and better user experience. Show examples of how mobile keyboards change based on input type. Emphasize that this is just basic validation - we'll add more sophisticated validation later.\nStudents: Take notes on different input types and their benefits."
+    },
+    {
+      "title": "Code Along: Email and Phone Fields",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "```html",
+        "<!-- Email Field -->",
+        "<div class=\"mb-3\">",
+        "    <label for=\"email\" class=\"form-label\">Email Address *</label>",
+        "    <input type=\"email\" class=\"form-control\" id=\"email\" name=\"email\" ",
+        "           placeholder=\"your.email@example.com\" required>",
+        "</div>",
+        "",
+        "<!-- Phone Field -->",
+        "<div class=\"mb-3\">",
+        "    <label for=\"phone\" class=\"form-label\">Phone Number</label>",
+        "    <input type=\"tel\" class=\"form-control\" id=\"phone\" name=\"phone\" ",
+        "           placeholder=\"(555) 123-4567\">",
+        "</div>",
+        "```"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 6 minutes\nTeacher: Type these fields while explaining the differences between required and optional fields. Show how the email field will show validation messages if invalid email is entered. Test both fields in the browser.\nStudents: Add these fields to their form and test the email validation by entering an invalid email."
+    },
+    {
+      "title": "Input Groups and Icons",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "**Input Groups** allow adding icons, text, or buttons to inputs",
+        "Use `.input-group` wrapper around the input",
+        "`.input-group-text` for icons or text additions",
+        "**Bootstrap Icons** can enhance user experience",
+        "Common pattern: Email icon + email field, Phone icon + phone field"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 3 minutes\nTeacher: Explain how input groups make forms more visually appealing and intuitive. Show examples of input groups from popular websites. We'll add icons to make our form more professional.\nStudents: Prepare to enhance their email field with an icon."
+    },
+    {
+      "title": "Code Along: Email Field with Icon",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "First, add Bootstrap Icons CDN to your `<head>` section:",
+        "```html",
+        "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css\">",
+        "```",
+        "",
+        "Then update the email field:",
+        "```html",
+        "<div class=\"mb-3\">",
+        "    <label for=\"email\" class=\"form-label\">Email Address *</label>",
+        "    <div class=\"input-group\">",
+        "        <span class=\"input-group-text\"><i class=\"bi bi-envelope\"></i></span>",
+        "        <input type=\"email\" class=\"form-control\" id=\"email\" name=\"email\" required>",
+        "    </div>",
+        "</div>",
+        "```"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 7 minutes\nTeacher: First add the Bootstrap Icons CDN, then show how to wrap the input with input-group. Explain the structure: wrapper div, icon span, then input. Test the result to show the professional appearance.\nStudents: Add the CDN link first, then update their email field to include the envelope icon."
+    },
+    {
+      "title": "Think-Pair-Share Activity",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "**Think:** Look at the Bootstrap Icons website (https://icons.getbootstrap.com/)",
+        "**Pair:** Work with a partner to find appropriate icons for:",
+        "• Phone number field",
+        "• Password field",
+        "• Date of birth field",
+        "**Share:** Each pair will share one icon they chose and explain why it's appropriate"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 8 minutes\nTeacher: Have students explore the Bootstrap Icons site and work together to select meaningful icons. This reinforces the concept while letting them practice finding resources. Circulate to help pairs who are struggling.\nStudents: Work with a partner to explore icons and make selections based on user experience principles."
+    },
+    {
+      "title": "Password Fields Best Practices",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "**Password fields** should always use `type=\"password\"`",
+        "**Confirm password** helps prevent typos",
+        "Use **side-by-side layout** on larger screens",
+        "Consider adding a **show/hide password** toggle (we'll add this later)",
+        "**Accessibility:** Ensure labels clearly identify each field"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 3 minutes\nTeacher: Discuss password field best practices and why confirmation fields are important. Mention that we'll add show/hide functionality in later lessons. Emphasize security and usability balance.\nStudents: Take notes on password field best practices."
+    },
+    {
+      "title": "Code Along: Password Fields Row",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "```html",
+        "<!-- Password Fields Row -->",
+        "<div class=\"row mb-3\">",
+        "    <div class=\"col-md-6\">",
+        "        <label for=\"password\" class=\"form-label\">Password *</label>",
+        "        <div class=\"input-group\">",
+        "            <span class=\"input-group-text\"><i class=\"bi bi-lock\"></i></span>",
+        "            <input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" required>",
+        "        </div>",
+        "    </div>",
+        "    <div class=\"col-md-6\">",
+        "        <label for=\"confirmPassword\" class=\"form-label\">Confirm Password *</label>",
+        "        <div class=\"input-group\">",
+        "            <span class=\"input-group-text\"><i class=\"bi bi-lock-fill\"></i></span>",
+        "            <input type=\"password\" class=\"form-control\" id=\"confirmPassword\" name=\"confirmPassword\" required>",
+        "        </div>",
+        "    </div>",
+        "</div>",
+        "```"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 6 minutes\nTeacher: Code along while explaining the two-column layout for password fields. Point out the different lock icons (bi-lock vs bi-lock-fill) to help users distinguish between the fields. Test the fields to show they mask input.\nStudents: Add the password fields and test that the text is properly masked."
+    },
+    {
+      "title": "Form Help Text and Descriptions",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "**Help text** provides additional guidance to users",
+        "Use the `.form-text` class for styling help text",
+        "**Associate help text** with inputs using `aria-describedby`",
+        "**Keep help text concise** but informative",
+        "**Examples:** Password requirements, format expectations, character limits"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 3 minutes\nTeacher: Explain how help text improves user experience by reducing form abandonment. Show examples of good vs. poor help text. Emphasize accessibility with aria-describedby.\nStudents: Think about what help text would be useful for password fields."
+    },
+    {
+      "title": "Adding Help Text to Password Field",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "Update the first password field to include help text:",
+        "```html",
+        "<div class=\"col-md-6\">",
+        "    <label for=\"password\" class=\"form-label\">Password *</label>",
+        "    <div class=\"input-group\">",
+        "        <span class=\"input-group-text\"><i class=\"bi bi-lock\"></i></span>",
+        "        <input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" ",
+        "               aria-describedby=\"passwordHelp\" required>",
+        "    </div>",
+        "    <div id=\"passwordHelp\" class=\"form-text\">",
+        "        Must be at least 8 characters with uppercase, lowercase, and numbers.",
+        "    </div>",
+        "</div>",
+        "```"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 4 minutes\nTeacher: Show how to add the aria-describedby attribute and the corresponding help text div. Explain that screen readers will announce this help text when users focus on the password field.\nStudents: Add the help text to their password field and test by tabbing to the field."
+    },
+    {
+      "title": "Closure: Form Component Quick Quiz",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "**Question 1:** What Bootstrap class makes an input field styled properly?",
+        "**Question 2:** How do you make two form fields appear side-by-side on medium+ screens?",
+        "**Question 3:** What attribute connects a label to its input for accessibility?",
+        "**Question 4:** What class is used for consistent spacing between form groups?",
+        "**Bonus:** Name two benefits of using input groups with icons."
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 5 minutes\nTeacher: Use this as a quick formative assessment. Have students write answers in their note-taker first, then call on non-volunteers. Answers: 1) .form-control, 2) Use .row and .col-md-6, 3) for attribute, 4) .mb-3, Bonus: Visual appeal and better UX.\nStudents: Write answers individually, then participate in class discussion."
+    },
+    {
+      "title": "Tomorrow's Preview",
+      "backgroundImageUrl": "https://drive.google.com/uc?export=view&id=1xwZJfyO-LDc4RKMrTNpXBEOYU-TW86M4",
+      "bullets": [
+        "**Tomorrow we'll add:**",
+        "• Date of birth field with proper date input",
+        "• Terms and conditions checkbox with custom styling",
+        "• Submit and reset buttons with Bootstrap button classes",
+        "• Complete responsive testing across all screen sizes",
+        "**Homework:** Finish any incomplete form fields from today's lesson"
+      ],
+      "layout": "title_and_bullets",
+      "imageUrl": "",
+      "imagePosition": "right",
+      "speakerNotes": "Time Estimate: 2 minutes\nTeacher: Preview tomorrow's activities to maintain engagement. Assign homework to ensure everyone starts tomorrow with a complete foundation. Remind students to test their forms on different screen sizes.\nStudents: Note homework assignment and prepare questions for tomorrow's lesson."
+    }
+  ]
+}
