@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 // app.post()
 // app.put()
 // app.delete()
-const userRouter = require('./routes/users');
+const userRouter = require('./routes/users.js');
 app.use('/users', userRouter);
 
 app.listen(3000);
