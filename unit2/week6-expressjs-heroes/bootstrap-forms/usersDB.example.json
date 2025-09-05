@@ -1,0 +1,86 @@
+[
+  {
+    "firstName": "Emma",
+    "lastName": "Johnson",
+    "email": "emma.johnson@email.com",
+    "phone": "555-0101",
+    "birthdate": "1995-03-15"
+  },
+  {
+    "firstName": "Michael",
+    "lastName": "Smith",
+    "email": "michael.smith@email.com",
+    "phone": "555-0102",
+    "birthdate": "1988-07-22"
+  },
+  {
+    "firstName": "Sarah",
+    "lastName": "Williams",
+    "email": "sarah.williams@email.com",
+    "phone": "555-0103",
+    "birthdate": "1992-11-08"
+  },
+  {
+    "firstName": "David",
+    "lastName": "Brown",
+    "email": "david.brown@email.com",
+    "phone": "555-0104",
+    "birthdate": "1985-01-30"
+  },
+  {
+    "firstName": "Jessica",
+    "lastName": "Davis",
+    "email": "jessica.davis@email.com",
+    "phone": "555-0105",
+    "birthdate": "1990-09-12"
+  },
+  {
+    "firstName": "Christopher",
+    "lastName": "Miller",
+    "email": "chris.miller@email.com",
+    "phone": "555-0106",
+    "birthdate": "1987-05-18"
+  },
+  {
+    "firstName": "Amanda",
+    "lastName": "Wilson",
+    "email": "amanda.wilson@email.com",
+    "phone": "555-0107",
+    "birthdate": "1993-12-03"
+  },
+  {
+    "firstName": "Daniel",
+    "lastName": "Moore",
+    "email": "daniel.moore@email.com",
+    "phone": "555-0108",
+    "birthdate": "1991-04-25"
+  },
+  {
+    "firstName": "Ashley",
+    "lastName": "Taylor",
+    "email": "ashley.taylor@email.com",
+    "phone": "555-0109",
+    "birthdate": "1989-08-14"
+  },
+  {
+    "firstName": "Matthew",
+    "lastName": "Anderson",
+    "email": "matthew.anderson@email.com",
+    "phone": "555-0110",
+    "birthdate": "1994-02-07"
+  },
+  {
+    "firstName": "Lauren",
+    "lastName": "Thomas",
+    "email": "lauren.thomas@email.com",
+    "phone": "555-0111",
+    "birthdate": "1986-10-19"
+  },
+  {
+    "firstName": "Ryan",
+    "lastName": "Jackson",
+    "email": "ryan.jackson@email.com",
+    "phone": "555-0112",
+    "birthdate": "1996-06-11"
+  }
+]
